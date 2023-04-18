@@ -80,6 +80,10 @@ MainLoop
 ; Escrever código que lê o estado da chave, se ela estiver desativada apaga o LED
 ; Se estivar ativada chama a subrotina Pisca_LED
 ; ****************************************
+
+	MOV R0, 2_00100000	
+	BL PortB_Output	
+	
 	BL Digito_0
 	BL Digito_1
 	BL Digito_2
