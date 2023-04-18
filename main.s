@@ -80,20 +80,24 @@ MainLoop
 ; Escrever código que lê o estado da chave, se ela estiver desativada apaga o LED
 ; Se estivar ativada chama a subrotina Pisca_LED
 ; ****************************************
-	BL Digito0
+	BL Digito_0
+	BL Digito_1
+	BL Digito_2
+	BL Digito_3
+	BL Digito_4
+	BL Digito_5
+	BL Digito_6
+	BL Digito_7
+	BL Digito_8
+	BL Digito_9
 	B MainLoop
 
 ;--------------------------------------------------------------------------------
-; Função Pisca_LED
+; Função Digito_0
 ; Parâmetro de entrada: Não tem
 ; Parâmetro de saída: Não tem
-Pisca_LED
-; ****************************************
-; Escrever função que acende o LED, espera 1 segundo, apaga o LED e espera 1 s
-; Esta função deve chamar a rotina SysTick_Wait1ms com o parâmetro de entrada em R0
-; ****************************************
-
-Digito0
+*********************************
+Digito_0
 	PUSH{LR}
 	MOV R0, #DIG0_PQ	
 	BL PortQ_Output	
@@ -102,6 +106,131 @@ Digito0
 	POP{LR}
 	BX LR
 
+;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_1
+	PUSH{LR}
+	MOV R0, #DIG1_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG1_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_2
+	PUSH{LR}
+	MOV R0, #DIG2_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG2_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_3
+	PUSH{LR}
+	MOV R0, #DIG3_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG3_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_4
+	PUSH{LR}
+	MOV R0, #DIG4_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG4_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_5
+	PUSH{LR}
+	MOV R0, #DIG5_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG5_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_6
+	PUSH{LR}
+	MOV R0, #DIG6_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG6_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_7
+	PUSH{LR}
+	MOV R0, #DIG7_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG7_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_8
+	PUSH{LR}
+	MOV R0, #DIG8_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG8_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
+	
+	;--------------------------------------------------------------------------------
+; Função Digito_0
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Digito_9
+	PUSH{LR}
+	MOV R0, #DIG9_PQ	
+	BL PortQ_Output	
+	MOV R0, #DIG9_PA	
+	BL PortA_Output	
+	POP{LR}
+	BX LR
 ; -------------------------------------------------------------------------------------------------------------------------
 ; Fim do Arquivo
 ; -------------------------------------------------------------------------------------------------------------------------	
