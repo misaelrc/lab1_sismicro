@@ -1,0 +1,4 @@
+--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --apcs=interwork 
+-IC:\Users\admin\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129
+--pd "__UVISION_VERSION SETA 536" --pd "TM4C1294NCPDT SETA 1"
+--list .\listings\main.lst --xref -o .\objects\main.o --depend .\objects\main.d "main.s"
