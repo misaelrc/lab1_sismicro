@@ -103,7 +103,13 @@ MainLoop
 	CMP R9, #0
 	BNE Pausado
 	; se não tiver pausado executa aqui
-	BL PortJInput				;Chama a subrotina que lê o estado das chaves e coloca o resultado em R0
+	CMP R10, #99
+	ITE	HI
+	MOVHI R10, #0
+	ADDLS R10, R10, R11
+	
+	
+	BL PortJ_Input				;Chama a subrotina que lê o estado das chaves e coloca o resultado em R0
 	B  Verifica_Nenhuma
 
 Pausado
