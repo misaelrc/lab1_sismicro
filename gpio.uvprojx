@@ -472,6 +472,16 @@
               <FileType>2</FileType>
               <FilePath>.\utils.s</FilePath>
             </File>
+            <File>
+              <FileName>ssd.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\ssd.s</FilePath>
+            </File>
+            <File>
+              <FileName>transistors.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\transistors.s</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
