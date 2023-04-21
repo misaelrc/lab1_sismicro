@@ -91,15 +91,24 @@ Start
 	MOV R11, #1					;passo da contagem
 	MOV R10, #0					;contador
 	MOV R9, #0					;estado --> 0 = funcionando / 1 = pausado
+	
+	MOV R5, #0					;conta tempo de exibição
 
 MainLoop
 ; ****************************************
 ; Escrever código que lê o estado da chave, se ela estiver desativada apaga o LED
 ; Se estivar ativada chama a subrotina Pisca_LED
 ; ****************************************
+
+Exibicao
 	BL Display_Dezena
 	BL Display_Unidade
 	
+	ADD R5, #1
+	CMP R5, #200
+	BLO Exibicao
+	
+	MOV R5, #0	
 	CMP R9, #0
 	BNE Pausado
 	; se não tiver pausado executa aqui
