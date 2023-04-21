@@ -79,6 +79,8 @@ DIG9_PA	EQU	2_01100000
 		IMPORT Digito_9
 		IMPORT Display_Dezena
 		IMPORT Display_Unidade
+		IMPORT Turn0n_TransistorQ1
+		IMPORT Turn0ff_TransistorQ1
 
 
 ; -------------------------------------------------------------------------------
@@ -91,6 +93,7 @@ Start
 	MOV R11, #1					;passo da contagem
 	MOV R10, #0					;contador
 	MOV R9, #0					;estado --> 0 = funcionando / 1 = pausado
+	MOV R8, #2_10000000			;estado dos leds
 	
 	MOV R5, #0					;conta tempo de exibição
 
@@ -103,6 +106,7 @@ MainLoop
 Exibicao
 	BL Display_Dezena
 	BL Display_Unidade
+	BL Led
 	
 	ADD R5, #1
 	CMP R5, #200
@@ -110,7 +114,7 @@ Exibicao
 	
 	MOV R5, #0	
 	CMP R9, #0
-	BNE Pausado
+	BNE Exibicao
 	; se não tiver pausado executa aqui
 	CMP R10, #99
 	ITE	HI
@@ -172,6 +176,30 @@ Verifica_Ambas
 	
 
 
+
+
+; Função Led
+; Parâmetro de entrada: Não tem
+; Parâmetro de saída: Não tem
+*********************************
+Led
+	PUSH {LR}
+	BL Turn0n_TransistorQ1				;Chamar a função para setar o transistor Q1
+	
+	MOV R0, R8
+
+	BL BitsToLed						;Chamar a função para pegar o valor dos bits de R0 e ligar os leds correspondentes
+	
+	MOV R0, #1                			;Chamar a rotina para esperar 1ms
+	BL SysTick_Wait1ms
+	
+	BL Turn0ff_TransistorQ1				;Chamar a função para resetar o transistor Q1
+	
+	MOV R0, #1                			;Chamar a rotina para esperar 1ms
+	BL SysTick_Wait1ms
+	
+	POP {LR}
+	BX LR
 	
 ; Função Pisca_Led
 ; Parâmetro de entrada: Não tem
@@ -195,6 +223,44 @@ Pisca_Led
 	POP {LR}
 	BX LR
 
+;--------------------------------------------------------------------------------
+; BinarioToDigito
+; Parâmetro de entrada: R0 --> bits para ligar LEDs correspondentes
+; Parâmetro de saída: Não tem
+*********************************
+BitsToLed
+	PUSH{LR}
+	MOV R1, R0
+	
+	AND R0, R1, #2_11110000
+	BL PortA_Output
+	
+	AND R0, R1, #2_00001111
+	BL PortQ_Output
+	
+	CMP R0, #0
+	BLEQ Digito_0
+	CMP R0, #1
+	BLEQ Digito_1
+	CMP R0, #2
+	BLEQ Digito_2
+	CMP R0, #3
+	BLEQ Digito_3
+	CMP R0, #4
+	BLEQ Digito_4
+	CMP R0, #5
+	BLEQ Digito_5
+	CMP R0, #6
+	BLEQ Digito_6
+	CMP R0, #7
+	BLEQ Digito_7
+	CMP R0, #8
+	BLEQ Digito_8
+	CMP R0, #9
+	BLEQ Digito_9	
+	POP{LR}
+	BX LR
+	
 ; APAGAR FUNCOES COMENTADAS
 
 ;--------------------------------------------------------------------------------
