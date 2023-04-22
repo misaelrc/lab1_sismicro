@@ -54,8 +54,6 @@ DIG9_PA	EQU	2_01100000
 		; Se chamar alguma função externa
 		IMPORT  SysTick_Wait1ms			
         IMPORT  PortA_Output
-		IMPORT  PortB_Output
-		IMPORT  PortP_Output
 		IMPORT  PortQ_Output
 
 		IMPORT Turn0n_TransistorQ2
@@ -69,18 +67,19 @@ DIG9_PA	EQU	2_01100000
 *********************************
 Display_Dezena
 	PUSH {LR}
-	BL Turn0n_TransistorQ2				;Chamar a função para setar o transistor Q2
+	MOV R3, R0
+
 	
 	MOV R1, #10
-	UDIV R0, R0, R1						;Divide o valor da entrada R0 por 10 e pega a dezena e armazena em R0
+	UDIV R0, R3, R1						;Divide o valor da entrada R0 por 10 e pega a dezena e armazena em R0
 
 	BL BinarioToDigito					;Chamar a função para pegar o valor binário de R0 e ligar o digito correspondente
-	
+
+	BL Turn0n_TransistorQ2				;Chamar a função para setar o transistor Q2
 	MOV R0, #1                			;Chamar a rotina para esperar 1ms
 	BL SysTick_Wait1ms
 	
 	BL Turn0ff_TransistorQ2				;Chamar a função para resetar o transistor Q2
-	
 	MOV R0, #1                			;Chamar a rotina para esperar 1ms
 	BL SysTick_Wait1ms
 	
@@ -93,19 +92,19 @@ Display_Dezena
 *********************************
 Display_Unidade
 	PUSH {LR}
-	BL Turn0n_TransistorQ3				;Chamar a função para setar o transistor Q3
+	MOV R3, R0
 	
 	MOV R1, #10
-	UDIV R2, R0, R1						;Divide o valor da entrada R0 por 10 e pega a dezena e armazena em R2
-	MLS R0, R2, R1, R0					;Pega unidade ,fazendo entrada (R0) - dezena (R2) * 10, e armazena em R0
+	UDIV R2, R3, R1						;Divide o valor da entrada R0 por 10 e pega a dezena e armazena em R2
+	MLS R0, R2, R1, R3					;Pega unidade ,fazendo entrada (R0) - dezena (R2) * 10, e armazena em R0
 	
 	BL BinarioToDigito					;Chamar a função para pegar o valor binário de R0 e ligar o digito correspondente
 	
+	BL Turn0n_TransistorQ3				;Chamar a função para setar o transistor Q3
 	MOV R0, #1                			;Chamar a rotina para esperar 1ms
 	BL SysTick_Wait1ms
 	
 	BL Turn0ff_TransistorQ3				;Chamar a função para resetar o transistor Q3
-	
 	MOV R0, #1                			;Chamar a rotina para esperar 1ms
 	BL SysTick_Wait1ms
 	

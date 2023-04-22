@@ -117,319 +117,318 @@ ARM Macro Assembler    Page 2
    54 00000000         ; Se chamar alguma função externa
    55 00000000                 IMPORT           SysTick_Wait1ms
    56 00000000                 IMPORT           PortA_Output
-   57 00000000                 IMPORT           PortB_Output
-   58 00000000                 IMPORT           PortP_Output
-   59 00000000                 IMPORT           PortQ_Output
-   60 00000000         
-   61 00000000                 IMPORT           Turn0n_TransistorQ2
-   62 00000000                 IMPORT           Turn0ff_TransistorQ2
-   63 00000000                 IMPORT           Turn0n_TransistorQ3
-   64 00000000                 IMPORT           Turn0ff_TransistorQ3
-   65 00000000         
-   66 00000000         ; Função Display_Dezena
-   67 00000000         ; Parâmetro de entrada: R0 --> valor do contador 
+   57 00000000                 IMPORT           PortQ_Output
+   58 00000000         
+   59 00000000                 IMPORT           Turn0n_TransistorQ2
+   60 00000000                 IMPORT           Turn0ff_TransistorQ2
+   61 00000000                 IMPORT           Turn0n_TransistorQ3
+   62 00000000                 IMPORT           Turn0ff_TransistorQ3
+   63 00000000         
+   64 00000000         ; Função Display_Dezena
+   65 00000000         ; Parâmetro de entrada: R0 --> valor do contador 
+   66 00000000         ; Parâmetro de saída: Não tem
+   67 00000000         *********************************
 
 
 
 ARM Macro Assembler    Page 3 
 
 
-   68 00000000         ; Parâmetro de saída: Não tem
-   69 00000000         *********************************
-   70 00000000         Display_Dezena
-   71 00000000 B500            PUSH             {LR}
-   72 00000002 F7FF FFFE       BL               Turn0n_TransistorQ2 ;Chamar a f
-                                                            unção para setar o 
-                                                            transistor Q2
-   73 00000006         
-   74 00000006 F04F 010A       MOV              R1, #10
-   75 0000000A FBB0 F0F1       UDIV             R0, R0, R1  ;Divide o valor da 
+   68 00000000         Display_Dezena
+   69 00000000 B500            PUSH             {LR}
+   70 00000002 4603            MOV              R3, R0
+   71 00000004         
+   72 00000004         
+   73 00000004 F04F 010A       MOV              R1, #10
+   74 00000008 FBB3 F0F1       UDIV             R0, R3, R1  ;Divide o valor da 
                                                             entrada R0 por 10 e
                                                              pega a dezena e ar
                                                             mazena em R0
-   76 0000000E         
-   77 0000000E F000 F825       BL               BinarioToDigito ;Chamar a funçã
+   75 0000000C         
+   76 0000000C F000 F828       BL               BinarioToDigito ;Chamar a funçã
                                                             o para pegar o valo
                                                             r binário de R0 e l
                                                             igar o digito corre
                                                             spondente
-   78 00000012         
-   79 00000012 F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
+   77 00000010         
+   78 00000010 F7FF FFFE       BL               Turn0n_TransistorQ2 ;Chamar a f
+                                                            unção para setar o 
+                                                            transistor Q2
+   79 00000014 F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
                                                             ra esperar 1ms
-   80 00000016 F7FF FFFE       BL               SysTick_Wait1ms
-   81 0000001A         
-   82 0000001A F7FF FFFE       BL               Turn0ff_TransistorQ2 ;Chamar a 
+   80 00000018 F7FF FFFE       BL               SysTick_Wait1ms
+   81 0000001C         
+   82 0000001C F7FF FFFE       BL               Turn0ff_TransistorQ2 ;Chamar a 
                                                             função para resetar
                                                              o transistor Q2
-   83 0000001E         
-   84 0000001E F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
+   83 00000020 F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
                                                             ra esperar 1ms
-   85 00000022 F7FF FFFE       BL               SysTick_Wait1ms
-   86 00000026         
-   87 00000026 F85D EB04       POP              {LR}
-   88 0000002A 4770            BX               LR
-   89 0000002C         
-   90 0000002C         ; Função Display_Unidade
-   91 0000002C         ; Parâmetro de entrada: R0 --> valor do contador
-   92 0000002C         ; Parâmetro de saída: Não tem
-   93 0000002C         *********************************
-   94 0000002C         Display_Unidade
-   95 0000002C B500            PUSH             {LR}
-   96 0000002E F7FF FFFE       BL               Turn0n_TransistorQ3 ;Chamar a f
-                                                            unção para setar o 
-                                                            transistor Q3
-   97 00000032         
-   98 00000032 F04F 010A       MOV              R1, #10
-   99 00000036 FBB0 F2F1       UDIV             R2, R0, R1  ;Divide o valor da 
+   84 00000024 F7FF FFFE       BL               SysTick_Wait1ms
+   85 00000028         
+   86 00000028 F85D EB04       POP              {LR}
+   87 0000002C 4770            BX               LR
+   88 0000002E         
+   89 0000002E         ; Função Display_Unidade
+   90 0000002E         ; Parâmetro de entrada: R0 --> valor do contador
+   91 0000002E         ; Parâmetro de saída: Não tem
+   92 0000002E         *********************************
+   93 0000002E         Display_Unidade
+   94 0000002E B500            PUSH             {LR}
+   95 00000030 4603            MOV              R3, R0
+   96 00000032         
+   97 00000032 F04F 010A       MOV              R1, #10
+   98 00000036 FBB3 F2F1       UDIV             R2, R3, R1  ;Divide o valor da 
                                                             entrada R0 por 10 e
                                                              pega a dezena e ar
                                                             mazena em R2
-  100 0000003A FB02 0011       MLS              R0, R2, R1, R0 ;Pega unidade ,f
+   99 0000003A FB02 3011       MLS              R0, R2, R1, R3 ;Pega unidade ,f
                                                             azendo entrada (R0)
                                                              - dezena (R2) * 10
                                                             , e armazena em R0
-  101 0000003E         
-  102 0000003E F000 F80D       BL               BinarioToDigito ;Chamar a funçã
+  100 0000003E         
+  101 0000003E F000 F80F       BL               BinarioToDigito ;Chamar a funçã
                                                             o para pegar o valo
                                                             r binário de R0 e l
                                                             igar o digito corre
+                                                            spondente
+  102 00000042         
+  103 00000042 F7FF FFFE       BL               Turn0n_TransistorQ3 ;Chamar a f
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-                                                            spondente
-  103 00000042         
-  104 00000042 F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
+                                                            unção para setar o 
+                                                            transistor Q3
+  104 00000046 F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
                                                             ra esperar 1ms
-  105 00000046 F7FF FFFE       BL               SysTick_Wait1ms
-  106 0000004A         
-  107 0000004A F7FF FFFE       BL               Turn0ff_TransistorQ3 ;Chamar a 
+  105 0000004A F7FF FFFE       BL               SysTick_Wait1ms
+  106 0000004E         
+  107 0000004E F7FF FFFE       BL               Turn0ff_TransistorQ3 ;Chamar a 
                                                             função para resetar
                                                              o transistor Q3
-  108 0000004E         
-  109 0000004E F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
+  108 00000052 F04F 0001       MOV              R0, #1      ;Chamar a rotina pa
                                                             ra esperar 1ms
-  110 00000052 F7FF FFFE       BL               SysTick_Wait1ms
-  111 00000056         
-  112 00000056 F85D EB04       POP              {LR}
-  113 0000005A 4770            BX               LR
-  114 0000005C         
-  115 0000005C         ;-------------------------------------------------------
+  109 00000056 F7FF FFFE       BL               SysTick_Wait1ms
+  110 0000005A         
+  111 0000005A F85D EB04       POP              {LR}
+  112 0000005E 4770            BX               LR
+  113 00000060         
+  114 00000060         ;-------------------------------------------------------
                        -------------------------
-  116 0000005C         ; BinarioToDigito
-  117 0000005C         ; Parâmetro de entrada: R0 --> número binário para ligar
+  115 00000060         ; BinarioToDigito
+  116 00000060         ; Parâmetro de entrada: R0 --> número binário para ligar
                         digito correspondente 
-  118 0000005C         ; Parâmetro de saída: Não tem
-  119 0000005C         *********************************
-  120 0000005C         BinarioToDigito
-  121 0000005C B500            PUSH{LR}
-  122 0000005E 2800            CMP              R0, #0
-  123 00000060 BF08 F7FF 
+  117 00000060         ; Parâmetro de saída: Não tem
+  118 00000060         *********************************
+  119 00000060         BinarioToDigito
+  120 00000060 B500            PUSH{LR}
+  121 00000062 2800            CMP              R0, #0
+  122 00000064 BF08 F7FF 
               FFFE             BLEQ             Digito_0
-  124 00000066 2801            CMP              R0, #1
-  125 00000068 BF08 F7FF 
+  123 0000006A 2801            CMP              R0, #1
+  124 0000006C BF08 F7FF 
               FFFE             BLEQ             Digito_1
-  126 0000006E 2802            CMP              R0, #2
-  127 00000070 BF08 F7FF 
+  125 00000072 2802            CMP              R0, #2
+  126 00000074 BF08 F7FF 
               FFFE             BLEQ             Digito_2
-  128 00000076 2803            CMP              R0, #3
-  129 00000078 BF08 F7FF 
+  127 0000007A 2803            CMP              R0, #3
+  128 0000007C BF08 F7FF 
               FFFE             BLEQ             Digito_3
-  130 0000007E 2804            CMP              R0, #4
-  131 00000080 BF08 F7FF 
+  129 00000082 2804            CMP              R0, #4
+  130 00000084 BF08 F7FF 
               FFFE             BLEQ             Digito_4
-  132 00000086 2805            CMP              R0, #5
-  133 00000088 BF08 F7FF 
+  131 0000008A 2805            CMP              R0, #5
+  132 0000008C BF08 F7FF 
               FFFE             BLEQ             Digito_5
-  134 0000008E 2806            CMP              R0, #6
-  135 00000090 BF08 F7FF 
+  133 00000092 2806            CMP              R0, #6
+  134 00000094 BF08 F7FF 
               FFFE             BLEQ             Digito_6
-  136 00000096 2807            CMP              R0, #7
-  137 00000098 BF08 F7FF 
+  135 0000009A 2807            CMP              R0, #7
+  136 0000009C BF08 F7FF 
               FFFE             BLEQ             Digito_7
-  138 0000009E 2808            CMP              R0, #8
-  139 000000A0 BF08 F7FF 
+  137 000000A2 2808            CMP              R0, #8
+  138 000000A4 BF08 F7FF 
               FFFE             BLEQ             Digito_8
-  140 000000A6 2809            CMP              R0, #9
-  141 000000A8 BF08 F7FF 
+  139 000000AA 2809            CMP              R0, #9
+  140 000000AC BF08 F7FF 
               FFFE             BLEQ             Digito_9
-  142 000000AE F85D EB04       POP{LR}
-  143 000000B2 4770            BX               LR
-  144 000000B4         
+  141 000000B2 F85D EB04       POP{LR}
+  142 000000B6 4770            BX               LR
+  143 000000B8         
+  144 000000B8         ;-------------------------------------------------------
 
 
 
 ARM Macro Assembler    Page 5 
 
 
-  145 000000B4         ;-------------------------------------------------------
                        -------------------------
-  146 000000B4         ; Função Digito_0
-  147 000000B4         ; Parâmetro de entrada: Não tem
-  148 000000B4         ; Parâmetro de saída: Não tem
-  149 000000B4         *********************************
-  150 000000B4         Digito_0
-  151 000000B4 B500            PUSH{LR}
-  152 000000B6 F04F 000F       MOV              R0, #DIG0_PQ
-  153 000000BA F7FF FFFE       BL               PortQ_Output
-  154 000000BE F04F 0030       MOV              R0, #DIG0_PA
-  155 000000C2 F7FF FFFE       BL               PortA_Output
-  156 000000C6 F85D EB04       POP{LR}
-  157 000000CA 4770            BX               LR
-  158 000000CC         
-  159 000000CC         ;-------------------------------------------------------
+  145 000000B8         ; Função Digito_0
+  146 000000B8         ; Parâmetro de entrada: Não tem
+  147 000000B8         ; Parâmetro de saída: Não tem
+  148 000000B8         *********************************
+  149 000000B8         Digito_0
+  150 000000B8 B500            PUSH{LR}
+  151 000000BA F04F 000F       MOV              R0, #DIG0_PQ
+  152 000000BE F7FF FFFE       BL               PortQ_Output
+  153 000000C2 F04F 0030       MOV              R0, #DIG0_PA
+  154 000000C6 F7FF FFFE       BL               PortA_Output
+  155 000000CA F85D EB04       POP{LR}
+  156 000000CE 4770            BX               LR
+  157 000000D0         
+  158 000000D0         ;-------------------------------------------------------
                        -------------------------
-  160 000000CC         ; Função Digito_1
-  161 000000CC         ; Parâmetro de entrada: Não tem
-  162 000000CC         ; Parâmetro de saída: Não tem
-  163 000000CC         *********************************
-  164 000000CC         Digito_1
-  165 000000CC B500            PUSH{LR}
-  166 000000CE F04F 0006       MOV              R0, #DIG1_PQ
-  167 000000D2 F7FF FFFE       BL               PortQ_Output
-  168 000000D6 F04F 0000       MOV              R0, #DIG1_PA
-  169 000000DA F7FF FFFE       BL               PortA_Output
-  170 000000DE F85D EB04       POP{LR}
-  171 000000E2 4770            BX               LR
-  172 000000E4         
-  173 000000E4         ;-------------------------------------------------------
+  159 000000D0         ; Função Digito_1
+  160 000000D0         ; Parâmetro de entrada: Não tem
+  161 000000D0         ; Parâmetro de saída: Não tem
+  162 000000D0         *********************************
+  163 000000D0         Digito_1
+  164 000000D0 B500            PUSH{LR}
+  165 000000D2 F04F 0006       MOV              R0, #DIG1_PQ
+  166 000000D6 F7FF FFFE       BL               PortQ_Output
+  167 000000DA F04F 0000       MOV              R0, #DIG1_PA
+  168 000000DE F7FF FFFE       BL               PortA_Output
+  169 000000E2 F85D EB04       POP{LR}
+  170 000000E6 4770            BX               LR
+  171 000000E8         
+  172 000000E8         ;-------------------------------------------------------
                        -------------------------
-  174 000000E4         ; Função Digito_2
-  175 000000E4         ; Parâmetro de entrada: Não tem
-  176 000000E4         ; Parâmetro de saída: Não tem
-  177 000000E4         *********************************
-  178 000000E4         Digito_2
-  179 000000E4 B500            PUSH{LR}
-  180 000000E6 F04F 000B       MOV              R0, #DIG2_PQ
-  181 000000EA F7FF FFFE       BL               PortQ_Output
-  182 000000EE F04F 0050       MOV              R0, #DIG2_PA
-  183 000000F2 F7FF FFFE       BL               PortA_Output
-  184 000000F6 F85D EB04       POP{LR}
-  185 000000FA 4770            BX               LR
-  186 000000FC         
-  187 000000FC         ;-------------------------------------------------------
+  173 000000E8         ; Função Digito_2
+  174 000000E8         ; Parâmetro de entrada: Não tem
+  175 000000E8         ; Parâmetro de saída: Não tem
+  176 000000E8         *********************************
+  177 000000E8         Digito_2
+  178 000000E8 B500            PUSH{LR}
+  179 000000EA F04F 000B       MOV              R0, #DIG2_PQ
+  180 000000EE F7FF FFFE       BL               PortQ_Output
+  181 000000F2 F04F 0050       MOV              R0, #DIG2_PA
+  182 000000F6 F7FF FFFE       BL               PortA_Output
+  183 000000FA F85D EB04       POP{LR}
+  184 000000FE 4770            BX               LR
+  185 00000100         
+  186 00000100         ;-------------------------------------------------------
                        -------------------------
-  188 000000FC         ; Função Digito_3
-  189 000000FC         ; Parâmetro de entrada: Não tem
-  190 000000FC         ; Parâmetro de saída: Não tem
-  191 000000FC         *********************************
-  192 000000FC         Digito_3
-  193 000000FC B500            PUSH{LR}
-  194 000000FE F04F 000F       MOV              R0, #DIG3_PQ
-  195 00000102 F7FF FFFE       BL               PortQ_Output
-  196 00000106 F04F 0040       MOV              R0, #DIG3_PA
-  197 0000010A F7FF FFFE       BL               PortA_Output
-  198 0000010E F85D EB04       POP{LR}
-  199 00000112 4770            BX               LR
+  187 00000100         ; Função Digito_3
+  188 00000100         ; Parâmetro de entrada: Não tem
+  189 00000100         ; Parâmetro de saída: Não tem
+  190 00000100         *********************************
+  191 00000100         Digito_3
+  192 00000100 B500            PUSH{LR}
+  193 00000102 F04F 000F       MOV              R0, #DIG3_PQ
+  194 00000106 F7FF FFFE       BL               PortQ_Output
+  195 0000010A F04F 0040       MOV              R0, #DIG3_PA
+  196 0000010E F7FF FFFE       BL               PortA_Output
+  197 00000112 F85D EB04       POP{LR}
+  198 00000116 4770            BX               LR
+  199 00000118         
 
 
 
 ARM Macro Assembler    Page 6 
 
 
-  200 00000114         
-  201 00000114         ;-------------------------------------------------------
+  200 00000118         ;-------------------------------------------------------
                        -------------------------
-  202 00000114         ; Função Digito_4
-  203 00000114         ; Parâmetro de entrada: Não tem
-  204 00000114         ; Parâmetro de saída: Não tem
-  205 00000114         *********************************
-  206 00000114         Digito_4
-  207 00000114 B500            PUSH{LR}
-  208 00000116 F04F 0006       MOV              R0, #DIG4_PQ
-  209 0000011A F7FF FFFE       BL               PortQ_Output
-  210 0000011E F04F 0060       MOV              R0, #DIG4_PA
-  211 00000122 F7FF FFFE       BL               PortA_Output
-  212 00000126 F85D EB04       POP{LR}
-  213 0000012A 4770            BX               LR
-  214 0000012C         
-  215 0000012C         ;-------------------------------------------------------
+  201 00000118         ; Função Digito_4
+  202 00000118         ; Parâmetro de entrada: Não tem
+  203 00000118         ; Parâmetro de saída: Não tem
+  204 00000118         *********************************
+  205 00000118         Digito_4
+  206 00000118 B500            PUSH{LR}
+  207 0000011A F04F 0006       MOV              R0, #DIG4_PQ
+  208 0000011E F7FF FFFE       BL               PortQ_Output
+  209 00000122 F04F 0060       MOV              R0, #DIG4_PA
+  210 00000126 F7FF FFFE       BL               PortA_Output
+  211 0000012A F85D EB04       POP{LR}
+  212 0000012E 4770            BX               LR
+  213 00000130         
+  214 00000130         ;-------------------------------------------------------
                        -------------------------
-  216 0000012C         ; Função Digito_5
-  217 0000012C         ; Parâmetro de entrada: Não tem
-  218 0000012C         ; Parâmetro de saída: Não tem
-  219 0000012C         *********************************
-  220 0000012C         Digito_5
-  221 0000012C B500            PUSH{LR}
-  222 0000012E F04F 000D       MOV              R0, #DIG5_PQ
-  223 00000132 F7FF FFFE       BL               PortQ_Output
-  224 00000136 F04F 0060       MOV              R0, #DIG5_PA
-  225 0000013A F7FF FFFE       BL               PortA_Output
-  226 0000013E F85D EB04       POP{LR}
-  227 00000142 4770            BX               LR
-  228 00000144         
-  229 00000144         ;-------------------------------------------------------
+  215 00000130         ; Função Digito_5
+  216 00000130         ; Parâmetro de entrada: Não tem
+  217 00000130         ; Parâmetro de saída: Não tem
+  218 00000130         *********************************
+  219 00000130         Digito_5
+  220 00000130 B500            PUSH{LR}
+  221 00000132 F04F 000D       MOV              R0, #DIG5_PQ
+  222 00000136 F7FF FFFE       BL               PortQ_Output
+  223 0000013A F04F 0060       MOV              R0, #DIG5_PA
+  224 0000013E F7FF FFFE       BL               PortA_Output
+  225 00000142 F85D EB04       POP{LR}
+  226 00000146 4770            BX               LR
+  227 00000148         
+  228 00000148         ;-------------------------------------------------------
                        -------------------------
-  230 00000144         ; Função Digito_6
-  231 00000144         ; Parâmetro de entrada: Não tem
-  232 00000144         ; Parâmetro de saída: Não tem
-  233 00000144         *********************************
-  234 00000144         Digito_6
-  235 00000144 B500            PUSH{LR}
-  236 00000146 F04F 000D       MOV              R0, #DIG6_PQ
-  237 0000014A F7FF FFFE       BL               PortQ_Output
-  238 0000014E F04F 0070       MOV              R0, #DIG6_PA
-  239 00000152 F7FF FFFE       BL               PortA_Output
-  240 00000156 F85D EB04       POP{LR}
-  241 0000015A 4770            BX               LR
-  242 0000015C         
-  243 0000015C         ;-------------------------------------------------------
+  229 00000148         ; Função Digito_6
+  230 00000148         ; Parâmetro de entrada: Não tem
+  231 00000148         ; Parâmetro de saída: Não tem
+  232 00000148         *********************************
+  233 00000148         Digito_6
+  234 00000148 B500            PUSH{LR}
+  235 0000014A F04F 000D       MOV              R0, #DIG6_PQ
+  236 0000014E F7FF FFFE       BL               PortQ_Output
+  237 00000152 F04F 0070       MOV              R0, #DIG6_PA
+  238 00000156 F7FF FFFE       BL               PortA_Output
+  239 0000015A F85D EB04       POP{LR}
+  240 0000015E 4770            BX               LR
+  241 00000160         
+  242 00000160         ;-------------------------------------------------------
                        -------------------------
-  244 0000015C         ; Função Digito_7
-  245 0000015C         ; Parâmetro de entrada: Não tem
-  246 0000015C         ; Parâmetro de saída: Não tem
-  247 0000015C         *********************************
-  248 0000015C         Digito_7
-  249 0000015C B500            PUSH{LR}
-  250 0000015E F04F 0007       MOV              R0, #DIG7_PQ
-  251 00000162 F7FF FFFE       BL               PortQ_Output
-  252 00000166 F04F 0000       MOV              R0, #DIG7_PA
-  253 0000016A F7FF FFFE       BL               PortA_Output
-  254 0000016E F85D EB04       POP{LR}
+  243 00000160         ; Função Digito_7
+  244 00000160         ; Parâmetro de entrada: Não tem
+  245 00000160         ; Parâmetro de saída: Não tem
+  246 00000160         *********************************
+  247 00000160         Digito_7
+  248 00000160 B500            PUSH{LR}
+  249 00000162 F04F 0007       MOV              R0, #DIG7_PQ
+  250 00000166 F7FF FFFE       BL               PortQ_Output
+  251 0000016A F04F 0000       MOV              R0, #DIG7_PA
+  252 0000016E F7FF FFFE       BL               PortA_Output
+  253 00000172 F85D EB04       POP{LR}
+  254 00000176 4770            BX               LR
 
 
 
 ARM Macro Assembler    Page 7 
 
 
-  255 00000172 4770            BX               LR
-  256 00000174         
-  257 00000174         ;-------------------------------------------------------
+  255 00000178         
+  256 00000178         ;-------------------------------------------------------
                        -------------------------
-  258 00000174         ; Função Digito_8
-  259 00000174         ; Parâmetro de entrada: Não tem
-  260 00000174         ; Parâmetro de saída: Não tem
-  261 00000174         *********************************
-  262 00000174         Digito_8
-  263 00000174 B500            PUSH{LR}
-  264 00000176 F04F 000F       MOV              R0, #DIG8_PQ
-  265 0000017A F7FF FFFE       BL               PortQ_Output
-  266 0000017E F04F 0070       MOV              R0, #DIG8_PA
-  267 00000182 F7FF FFFE       BL               PortA_Output
-  268 00000186 F85D EB04       POP{LR}
-  269 0000018A 4770            BX               LR
-  270 0000018C         
-  271 0000018C         ;-------------------------------------------------------
+  257 00000178         ; Função Digito_8
+  258 00000178         ; Parâmetro de entrada: Não tem
+  259 00000178         ; Parâmetro de saída: Não tem
+  260 00000178         *********************************
+  261 00000178         Digito_8
+  262 00000178 B500            PUSH{LR}
+  263 0000017A F04F 000F       MOV              R0, #DIG8_PQ
+  264 0000017E F7FF FFFE       BL               PortQ_Output
+  265 00000182 F04F 0070       MOV              R0, #DIG8_PA
+  266 00000186 F7FF FFFE       BL               PortA_Output
+  267 0000018A F85D EB04       POP{LR}
+  268 0000018E 4770            BX               LR
+  269 00000190         
+  270 00000190         ;-------------------------------------------------------
                        -------------------------
-  272 0000018C         ; Função Digito_9
-  273 0000018C         ; Parâmetro de entrada: Não tem
-  274 0000018C         ; Parâmetro de saída: Não tem
-  275 0000018C         *********************************
-  276 0000018C         Digito_9
-  277 0000018C B500            PUSH{LR}
-  278 0000018E F04F 0007       MOV              R0, #DIG9_PQ
-  279 00000192 F7FF FFFE       BL               PortQ_Output
-  280 00000196 F04F 0060       MOV              R0, #DIG9_PA
-  281 0000019A F7FF FFFE       BL               PortA_Output
-  282 0000019E F85D EB04       POP{LR}
-  283 000001A2 4770            BX               LR
-  284 000001A4         
-  285 000001A4                 ALIGN                        ; garante que o fim
+  271 00000190         ; Função Digito_9
+  272 00000190         ; Parâmetro de entrada: Não tem
+  273 00000190         ; Parâmetro de saída: Não tem
+  274 00000190         *********************************
+  275 00000190         Digito_9
+  276 00000190 B500            PUSH{LR}
+  277 00000192 F04F 0007       MOV              R0, #DIG9_PQ
+  278 00000196 F7FF FFFE       BL               PortQ_Output
+  279 0000019A F04F 0060       MOV              R0, #DIG9_PA
+  280 0000019E F7FF FFFE       BL               PortA_Output
+  281 000001A2 F85D EB04       POP{LR}
+  282 000001A6 4770            BX               LR
+  283 000001A8         
+  284 000001A8                 ALIGN                        ; garante que o fim
                                                              da seção está alin
                                                             hada 
-  286 000001A4                 END                          ; fim do arquivo
+  285 000001A8                 END                          ; fim do arquivo
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=.\objects\ssd.d -o.\objects\ssd.o -IC:\Users\admin\AppData\L
 ocal\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129 --predefine="__EVAL S
@@ -449,56 +448,56 @@ Symbol: .text
    Uses
       None
 Comment: .text unused
-BinarioToDigito 0000005C
+BinarioToDigito 00000060
 
 Symbol: BinarioToDigito
    Definitions
-      At line 120 in file ssd.s
+      At line 119 in file ssd.s
    Uses
-      At line 77 in file ssd.s
-      At line 102 in file ssd.s
+      At line 76 in file ssd.s
+      At line 101 in file ssd.s
 
-Digito_0 000000B4
+Digito_0 000000B8
 
 Symbol: Digito_0
    Definitions
-      At line 150 in file ssd.s
+      At line 149 in file ssd.s
    Uses
       At line 41 in file ssd.s
-      At line 123 in file ssd.s
+      At line 122 in file ssd.s
 
-Digito_1 000000CC
+Digito_1 000000D0
 
 Symbol: Digito_1
    Definitions
-      At line 164 in file ssd.s
+      At line 163 in file ssd.s
    Uses
       At line 42 in file ssd.s
-      At line 125 in file ssd.s
+      At line 124 in file ssd.s
 
-Digito_2 000000E4
+Digito_2 000000E8
 
 Symbol: Digito_2
    Definitions
-      At line 178 in file ssd.s
+      At line 177 in file ssd.s
    Uses
       At line 43 in file ssd.s
-      At line 127 in file ssd.s
+      At line 126 in file ssd.s
 
-Digito_3 000000FC
+Digito_3 00000100
 
 Symbol: Digito_3
    Definitions
-      At line 192 in file ssd.s
+      At line 191 in file ssd.s
    Uses
       At line 44 in file ssd.s
-      At line 129 in file ssd.s
+      At line 128 in file ssd.s
 
-Digito_4 00000114
+Digito_4 00000118
 
 Symbol: Digito_4
    Definitions
-      At line 206 in file ssd.s
+      At line 205 in file ssd.s
    Uses
 
 
@@ -507,62 +506,62 @@ ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
       At line 45 in file ssd.s
-      At line 131 in file ssd.s
+      At line 130 in file ssd.s
 
-Digito_5 0000012C
+Digito_5 00000130
 
 Symbol: Digito_5
    Definitions
-      At line 220 in file ssd.s
+      At line 219 in file ssd.s
    Uses
       At line 46 in file ssd.s
-      At line 133 in file ssd.s
+      At line 132 in file ssd.s
 
-Digito_6 00000144
+Digito_6 00000148
 
 Symbol: Digito_6
    Definitions
-      At line 234 in file ssd.s
+      At line 233 in file ssd.s
    Uses
       At line 47 in file ssd.s
-      At line 135 in file ssd.s
+      At line 134 in file ssd.s
 
-Digito_7 0000015C
+Digito_7 00000160
 
 Symbol: Digito_7
    Definitions
-      At line 248 in file ssd.s
+      At line 247 in file ssd.s
    Uses
       At line 48 in file ssd.s
-      At line 137 in file ssd.s
+      At line 136 in file ssd.s
 
-Digito_8 00000174
+Digito_8 00000178
 
 Symbol: Digito_8
    Definitions
-      At line 262 in file ssd.s
+      At line 261 in file ssd.s
    Uses
       At line 49 in file ssd.s
-      At line 139 in file ssd.s
+      At line 138 in file ssd.s
 
-Digito_9 0000018C
+Digito_9 00000190
 
 Symbol: Digito_9
    Definitions
-      At line 276 in file ssd.s
+      At line 275 in file ssd.s
    Uses
       At line 50 in file ssd.s
-      At line 141 in file ssd.s
+      At line 140 in file ssd.s
 
 Display_Dezena 00000000
 
 Symbol: Display_Dezena
    Definitions
-      At line 70 in file ssd.s
+      At line 68 in file ssd.s
    Uses
       At line 51 in file ssd.s
 Comment: Display_Dezena used once
-Display_Unidade 0000002C
+Display_Unidade 0000002E
 
 Symbol: Display_Unidade
 
@@ -572,7 +571,7 @@ ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 94 in file ssd.s
+      At line 93 in file ssd.s
    Uses
       At line 52 in file ssd.s
 Comment: Display_Unidade used once
@@ -589,7 +588,7 @@ Symbol: DIG0_PA
    Definitions
       At line 14 in file ssd.s
    Uses
-      At line 154 in file ssd.s
+      At line 153 in file ssd.s
 Comment: DIG0_PA used once
 DIG0_PQ 0000000F
 
@@ -597,7 +596,7 @@ Symbol: DIG0_PQ
    Definitions
       At line 13 in file ssd.s
    Uses
-      At line 152 in file ssd.s
+      At line 151 in file ssd.s
 Comment: DIG0_PQ used once
 DIG1_PA 00000000
 
@@ -605,7 +604,7 @@ Symbol: DIG1_PA
    Definitions
       At line 16 in file ssd.s
    Uses
-      At line 168 in file ssd.s
+      At line 167 in file ssd.s
 Comment: DIG1_PA used once
 DIG1_PQ 00000006
 
@@ -613,7 +612,7 @@ Symbol: DIG1_PQ
    Definitions
       At line 15 in file ssd.s
    Uses
-      At line 166 in file ssd.s
+      At line 165 in file ssd.s
 Comment: DIG1_PQ used once
 DIG2_PA 00000050
 
@@ -621,7 +620,7 @@ Symbol: DIG2_PA
    Definitions
       At line 18 in file ssd.s
    Uses
-      At line 182 in file ssd.s
+      At line 181 in file ssd.s
 Comment: DIG2_PA used once
 DIG2_PQ 0000000B
 
@@ -629,7 +628,7 @@ Symbol: DIG2_PQ
    Definitions
       At line 17 in file ssd.s
    Uses
-      At line 180 in file ssd.s
+      At line 179 in file ssd.s
 Comment: DIG2_PQ used once
 DIG3_PA 00000040
 
@@ -637,7 +636,7 @@ Symbol: DIG3_PA
    Definitions
       At line 20 in file ssd.s
    Uses
-      At line 196 in file ssd.s
+      At line 195 in file ssd.s
 Comment: DIG3_PA used once
 DIG3_PQ 0000000F
 
@@ -651,7 +650,7 @@ Absolute symbols
    Definitions
       At line 19 in file ssd.s
    Uses
-      At line 194 in file ssd.s
+      At line 193 in file ssd.s
 Comment: DIG3_PQ used once
 DIG4_PA 00000060
 
@@ -659,7 +658,7 @@ Symbol: DIG4_PA
    Definitions
       At line 22 in file ssd.s
    Uses
-      At line 210 in file ssd.s
+      At line 209 in file ssd.s
 Comment: DIG4_PA used once
 DIG4_PQ 00000006
 
@@ -667,7 +666,7 @@ Symbol: DIG4_PQ
    Definitions
       At line 21 in file ssd.s
    Uses
-      At line 208 in file ssd.s
+      At line 207 in file ssd.s
 Comment: DIG4_PQ used once
 DIG5_PA 00000060
 
@@ -675,7 +674,7 @@ Symbol: DIG5_PA
    Definitions
       At line 24 in file ssd.s
    Uses
-      At line 224 in file ssd.s
+      At line 223 in file ssd.s
 Comment: DIG5_PA used once
 DIG5_PQ 0000000D
 
@@ -683,7 +682,7 @@ Symbol: DIG5_PQ
    Definitions
       At line 23 in file ssd.s
    Uses
-      At line 222 in file ssd.s
+      At line 221 in file ssd.s
 Comment: DIG5_PQ used once
 DIG6_PA 00000070
 
@@ -691,7 +690,7 @@ Symbol: DIG6_PA
    Definitions
       At line 26 in file ssd.s
    Uses
-      At line 238 in file ssd.s
+      At line 237 in file ssd.s
 Comment: DIG6_PA used once
 DIG6_PQ 0000000D
 
@@ -699,7 +698,7 @@ Symbol: DIG6_PQ
    Definitions
       At line 25 in file ssd.s
    Uses
-      At line 236 in file ssd.s
+      At line 235 in file ssd.s
 Comment: DIG6_PQ used once
 DIG7_PA 00000000
 
@@ -713,7 +712,7 @@ Symbol: DIG7_PA
 ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Absolute symbols
 
-      At line 252 in file ssd.s
+      At line 251 in file ssd.s
 Comment: DIG7_PA used once
 DIG7_PQ 00000007
 
@@ -721,7 +720,7 @@ Symbol: DIG7_PQ
    Definitions
       At line 27 in file ssd.s
    Uses
-      At line 250 in file ssd.s
+      At line 249 in file ssd.s
 Comment: DIG7_PQ used once
 DIG8_PA 00000070
 
@@ -729,7 +728,7 @@ Symbol: DIG8_PA
    Definitions
       At line 30 in file ssd.s
    Uses
-      At line 266 in file ssd.s
+      At line 265 in file ssd.s
 Comment: DIG8_PA used once
 DIG8_PQ 0000000F
 
@@ -737,7 +736,7 @@ Symbol: DIG8_PQ
    Definitions
       At line 29 in file ssd.s
    Uses
-      At line 264 in file ssd.s
+      At line 263 in file ssd.s
 Comment: DIG8_PQ used once
 DIG9_PA 00000060
 
@@ -745,7 +744,7 @@ Symbol: DIG9_PA
    Definitions
       At line 32 in file ssd.s
    Uses
-      At line 280 in file ssd.s
+      At line 279 in file ssd.s
 Comment: DIG9_PA used once
 DIG9_PQ 00000007
 
@@ -753,7 +752,7 @@ Symbol: DIG9_PQ
    Definitions
       At line 31 in file ssd.s
    Uses
-      At line 278 in file ssd.s
+      At line 277 in file ssd.s
 Comment: DIG9_PQ used once
 20 symbols
 
@@ -768,49 +767,33 @@ Symbol: PortA_Output
    Definitions
       At line 56 in file ssd.s
    Uses
-      At line 155 in file ssd.s
-      At line 169 in file ssd.s
-      At line 183 in file ssd.s
-      At line 197 in file ssd.s
-      At line 211 in file ssd.s
-      At line 225 in file ssd.s
-      At line 239 in file ssd.s
-      At line 253 in file ssd.s
-      At line 267 in file ssd.s
-      At line 281 in file ssd.s
+      At line 154 in file ssd.s
+      At line 168 in file ssd.s
+      At line 182 in file ssd.s
+      At line 196 in file ssd.s
+      At line 210 in file ssd.s
+      At line 224 in file ssd.s
+      At line 238 in file ssd.s
+      At line 252 in file ssd.s
+      At line 266 in file ssd.s
+      At line 280 in file ssd.s
 
-PortB_Output 00000000
-
-Symbol: PortB_Output
-   Definitions
-      At line 57 in file ssd.s
-   Uses
-      None
-Comment: PortB_Output unused
-PortP_Output 00000000
-
-Symbol: PortP_Output
-   Definitions
-      At line 58 in file ssd.s
-   Uses
-      None
-Comment: PortP_Output unused
 PortQ_Output 00000000
 
 Symbol: PortQ_Output
    Definitions
-      At line 59 in file ssd.s
+      At line 57 in file ssd.s
    Uses
-      At line 153 in file ssd.s
-      At line 167 in file ssd.s
-      At line 181 in file ssd.s
-      At line 195 in file ssd.s
-      At line 209 in file ssd.s
-      At line 223 in file ssd.s
-      At line 237 in file ssd.s
-      At line 251 in file ssd.s
-      At line 265 in file ssd.s
-      At line 279 in file ssd.s
+      At line 152 in file ssd.s
+      At line 166 in file ssd.s
+      At line 180 in file ssd.s
+      At line 194 in file ssd.s
+      At line 208 in file ssd.s
+      At line 222 in file ssd.s
+      At line 236 in file ssd.s
+      At line 250 in file ssd.s
+      At line 264 in file ssd.s
+      At line 278 in file ssd.s
 
 SysTick_Wait1ms 00000000
 
@@ -819,21 +802,15 @@ Symbol: SysTick_Wait1ms
       At line 55 in file ssd.s
    Uses
       At line 80 in file ssd.s
-      At line 85 in file ssd.s
+      At line 84 in file ssd.s
       At line 105 in file ssd.s
-
-
-
-ARM Macro Assembler    Page 2 Alphabetic symbol ordering
-External symbols
-
-      At line 110 in file ssd.s
+      At line 109 in file ssd.s
 
 Turn0ff_TransistorQ2 00000000
 
 Symbol: Turn0ff_TransistorQ2
    Definitions
-      At line 62 in file ssd.s
+      At line 60 in file ssd.s
    Uses
       At line 82 in file ssd.s
 Comment: Turn0ff_TransistorQ2 used once
@@ -841,25 +818,31 @@ Turn0ff_TransistorQ3 00000000
 
 Symbol: Turn0ff_TransistorQ3
    Definitions
-      At line 64 in file ssd.s
+      At line 62 in file ssd.s
    Uses
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+External symbols
+
       At line 107 in file ssd.s
 Comment: Turn0ff_TransistorQ3 used once
 Turn0n_TransistorQ2 00000000
 
 Symbol: Turn0n_TransistorQ2
    Definitions
-      At line 61 in file ssd.s
+      At line 59 in file ssd.s
    Uses
-      At line 72 in file ssd.s
+      At line 78 in file ssd.s
 Comment: Turn0n_TransistorQ2 used once
 Turn0n_TransistorQ3 00000000
 
 Symbol: Turn0n_TransistorQ3
    Definitions
-      At line 63 in file ssd.s
+      At line 61 in file ssd.s
    Uses
-      At line 96 in file ssd.s
+      At line 103 in file ssd.s
 Comment: Turn0n_TransistorQ3 used once
-9 symbols
-377 symbols in table
+7 symbols
+375 symbols in table

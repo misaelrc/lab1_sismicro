@@ -7,9 +7,7 @@
 ; -------------------------------------------------------------------------------
 ; Declarações EQU - Defines
 ; ========================
-; ========================
-
-; Portas usadas para cada dígito
+; Portas usadas para cada transistor
 TRANSISTOR_Q1	EQU	2_00100000
 TRANSISTOR_Q2	EQU	2_00010000
 TRANSISTOR_Q3	EQU	2_00100000

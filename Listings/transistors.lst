@@ -16,176 +16,174 @@ ARM Macro Assembler    Page 1
                        -------------------------
     8 00000000         ; Declarações EQU - Defines
     9 00000000         ; ========================
-   10 00000000         ; ========================
-   11 00000000         
-   12 00000000         ; Portas usadas para cada dígito
-   13 00000000 00000020 
+   10 00000000         ; Portas usadas para cada transistor
+   11 00000000 00000020 
                        TRANSISTOR_Q1
                                EQU              2_00100000
-   14 00000000 00000010 
+   12 00000000 00000010 
                        TRANSISTOR_Q2
                                EQU              2_00010000
-   15 00000000 00000020 
+   13 00000000 00000020 
                        TRANSISTOR_Q3
                                EQU              2_00100000
+   14 00000000         
+   15 00000000         
    16 00000000         
-   17 00000000         
-   18 00000000         
-   19 00000000         ; ------------------------------------------------------
+   17 00000000         ; ------------------------------------------------------
                        -------------------------
-   20 00000000         ; Área de Código - Tudo abaixo da diretiva a seguir será
+   18 00000000         ; Área de Código - Tudo abaixo da diretiva a seguir será
                         armazenado na memória de 
-   21 00000000         ;                  código
-   22 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+   19 00000000         ;                  código
+   20 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
 2
-   23 00000000         
-   24 00000000         ; Se alguma função do arquivo for chamada em outro arqui
+   21 00000000         
+   22 00000000         ; Se alguma função do arquivo for chamada em outro arqui
                        vo 
-   25 00000000                 EXPORT           Turn0n_TransistorQ1 ; Permite c
+   23 00000000                 EXPORT           Turn0n_TransistorQ1 ; Permite c
                                                             hamar Turn0n_Transi
                                                             storQ1 de outro arq
                                                             uivo
-   26 00000000                 EXPORT           Turn0ff_TransistorQ1 ; Permite 
+   24 00000000                 EXPORT           Turn0ff_TransistorQ1 ; Permite 
                                                             chamar Turn0ff_Tran
                                                             sistorQ1 de outro a
                                                             rquivo
-   27 00000000                 EXPORT           Turn0n_TransistorQ2 ; Permite c
+   25 00000000                 EXPORT           Turn0n_TransistorQ2 ; Permite c
                                                             hamar Turn0n_Transi
                                                             storQ2 de outro arq
                                                             uivo
-   28 00000000                 EXPORT           Turn0ff_TransistorQ2 ; Permite 
+   26 00000000                 EXPORT           Turn0ff_TransistorQ2 ; Permite 
                                                             chamar Turn0ff_Tran
                                                             sistorQ2 de outro a
                                                             rquivo
-   29 00000000                 EXPORT           Turn0n_TransistorQ3 ; Permite c
+   27 00000000                 EXPORT           Turn0n_TransistorQ3 ; Permite c
                                                             hamar Turn0n_Transi
                                                             storQ3 de outro arq
                                                             uivo
-   30 00000000                 EXPORT           Turn0ff_TransistorQ3 ; Permite 
+   28 00000000                 EXPORT           Turn0ff_TransistorQ3 ; Permite 
                                                             chamar Turn0ff_Tran
+                                                            sistorQ3 de outro a
+                                                            rquivo
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-                                                            sistorQ3 de outro a
-                                                            rquivo
-   31 00000000         
-   32 00000000         ; Se chamar alguma função externa 
-   33 00000000                 IMPORT           PortB_Output
-   34 00000000                 IMPORT           PortP_Output
-   35 00000000         
-   36 00000000         ; Função Turn0n_TransistorQ1
-   37 00000000         ; Parâmetro de entrada: Não tem
-   38 00000000         ; Parâmetro de saída: Não tem
-   39 00000000         *********************************
-   40 00000000         Turn0n_TransistorQ1
-   41 00000000 B500            PUSH             {LR}
-   42 00000002 F04F 0020       MOV              R0, #TRANSISTOR_Q1 ; Setar o pa
+   29 00000000         
+   30 00000000         ; Se chamar alguma função externa 
+   31 00000000                 IMPORT           PortB_Output
+   32 00000000                 IMPORT           PortP_Output
+   33 00000000         
+   34 00000000         ; Função Turn0n_TransistorQ1
+   35 00000000         ; Parâmetro de entrada: Não tem
+   36 00000000         ; Parâmetro de saída: Não tem
+   37 00000000         *********************************
+   38 00000000         Turn0n_TransistorQ1
+   39 00000000 B500            PUSH             {LR}
+   40 00000002 F04F 0020       MOV              R0, #TRANSISTOR_Q1 ; Setar o pa
                                                             râmetro de entrada 
                                                             da função setando o
                                                              bit P5
-   43 00000006 F7FF FFFE       BL               PortP_Output ; Chamar a função 
+   41 00000006 F7FF FFFE       BL               PortP_Output ; Chamar a função 
                                                             para setar a entrad
                                                             a do transistor Q1
-   44 0000000A F85D EB04       POP              {LR}
-   45 0000000E 4770            BX               LR
-   46 00000010         
-   47 00000010         ; Função Turn0n_TransistorQ2
-   48 00000010         ; Parâmetro de entrada: Não tem
-   49 00000010         ; Parâmetro de saída: Não tem
-   50 00000010         *********************************
-   51 00000010         Turn0n_TransistorQ2
-   52 00000010 B500            PUSH             {LR}
-   53 00000012 F04F 0010       MOV              R0, #TRANSISTOR_Q2 ; Setar o pa
+   42 0000000A F85D EB04       POP              {LR}
+   43 0000000E 4770            BX               LR
+   44 00000010         
+   45 00000010         ; Função Turn0n_TransistorQ2
+   46 00000010         ; Parâmetro de entrada: Não tem
+   47 00000010         ; Parâmetro de saída: Não tem
+   48 00000010         *********************************
+   49 00000010         Turn0n_TransistorQ2
+   50 00000010 B500            PUSH             {LR}
+   51 00000012 F04F 0010       MOV              R0, #TRANSISTOR_Q2 ; Setar o pa
                                                             râmetro de entrada 
                                                             da função setando o
                                                              bit B4
-   54 00000016 F7FF FFFE       BL               PortB_Output ; Chamar a função 
+   52 00000016 F7FF FFFE       BL               PortB_Output ; Chamar a função 
                                                             para setar a entrad
                                                             a do transistor Q2
-   55 0000001A F85D EB04       POP              {LR}
-   56 0000001E 4770            BX               LR
-   57 00000020         
-   58 00000020         ; Função Turn0n_TransistorQ3
-   59 00000020         ; Parâmetro de entrada: Não tem
-   60 00000020         ; Parâmetro de saída: Não tem
-   61 00000020         *********************************
-   62 00000020         Turn0n_TransistorQ3
-   63 00000020 B500            PUSH             {LR}
-   64 00000022 F04F 0020       MOV              R0, #TRANSISTOR_Q3 ; Setar o pa
+   53 0000001A F85D EB04       POP              {LR}
+   54 0000001E 4770            BX               LR
+   55 00000020         
+   56 00000020         ; Função Turn0n_TransistorQ3
+   57 00000020         ; Parâmetro de entrada: Não tem
+   58 00000020         ; Parâmetro de saída: Não tem
+   59 00000020         *********************************
+   60 00000020         Turn0n_TransistorQ3
+   61 00000020 B500            PUSH             {LR}
+   62 00000022 F04F 0020       MOV              R0, #TRANSISTOR_Q3 ; Setar o pa
                                                             râmetro de entrada 
                                                             da função setando o
                                                              bit B5
-   65 00000026 F7FF FFFE       BL               PortB_Output ; Chamar a função 
+   63 00000026 F7FF FFFE       BL               PortB_Output ; Chamar a função 
                                                             para setar a entrad
                                                             a do transistor Q3
-   66 0000002A F85D EB04       POP              {LR}
-   67 0000002E 4770            BX               LR
-   68 00000030         
-   69 00000030         ; Função Turn0ff_TransistorQ1
-   70 00000030         ; Parâmetro de entrada: Não tem
-   71 00000030         ; Parâmetro de saída: Não tem
-   72 00000030         *********************************
+   64 0000002A F85D EB04       POP              {LR}
+   65 0000002E 4770            BX               LR
+   66 00000030         
+   67 00000030         ; Função Turn0ff_TransistorQ1
+   68 00000030         ; Parâmetro de entrada: Não tem
+   69 00000030         ; Parâmetro de saída: Não tem
+   70 00000030         *********************************
+   71 00000030         Turn0ff_TransistorQ1
+   72 00000030 B500            PUSH             {LR}
 
 
 
 ARM Macro Assembler    Page 3 
 
 
-   73 00000030         Turn0ff_TransistorQ1
-   74 00000030 B500            PUSH             {LR}
-   75 00000032 F04F 0000       MOV              R0, #2_00000000 ; Setar o parâm
+   73 00000032 F04F 0000       MOV              R0, #2_00000000 ; Setar o parâm
                                                             etro de entrada da 
                                                             função apagando o b
                                                             it P5
-   76 00000036 F7FF FFFE       BL               PortP_Output ; Chamar a função 
+   74 00000036 F7FF FFFE       BL               PortP_Output ; Chamar a função 
                                                             para resetar a entr
                                                             ada do transistor Q
                                                             1
-   77 0000003A F85D EB04       POP              {LR}
-   78 0000003E 4770            BX               LR
-   79 00000040         
-   80 00000040         ; Função Turn0ff_TransistorQ2
-   81 00000040         ; Parâmetro de entrada: Não tem
-   82 00000040         ; Parâmetro de saída: Não tem
-   83 00000040         *********************************
-   84 00000040         Turn0ff_TransistorQ2
-   85 00000040 B500            PUSH             {LR}
-   86 00000042 F04F 0000       MOV              R0, #2_00000000 ; Setar o parâm
+   75 0000003A F85D EB04       POP              {LR}
+   76 0000003E 4770            BX               LR
+   77 00000040         
+   78 00000040         ; Função Turn0ff_TransistorQ2
+   79 00000040         ; Parâmetro de entrada: Não tem
+   80 00000040         ; Parâmetro de saída: Não tem
+   81 00000040         *********************************
+   82 00000040         Turn0ff_TransistorQ2
+   83 00000040 B500            PUSH             {LR}
+   84 00000042 F04F 0000       MOV              R0, #2_00000000 ; Setar o parâm
                                                             etro de entrada da 
                                                             função apagando o b
                                                             it B4
-   87 00000046 F7FF FFFE       BL               PortB_Output ; Chamar a função 
+   85 00000046 F7FF FFFE       BL               PortB_Output ; Chamar a função 
                                                             para resetar a entr
                                                             ada do transistor Q
                                                             2
-   88 0000004A F85D EB04       POP              {LR}
-   89 0000004E 4770            BX               LR
-   90 00000050         
-   91 00000050         ; Função Turn0ff_TransistorQ3
-   92 00000050         ; Parâmetro de entrada: Não tem
-   93 00000050         ; Parâmetro de saída: Não tem
-   94 00000050         *********************************
-   95 00000050         Turn0ff_TransistorQ3
-   96 00000050 B500            PUSH             {LR}
-   97 00000052 F04F 0000       MOV              R0, #2_00000000 ; Setar o parâm
+   86 0000004A F85D EB04       POP              {LR}
+   87 0000004E 4770            BX               LR
+   88 00000050         
+   89 00000050         ; Função Turn0ff_TransistorQ3
+   90 00000050         ; Parâmetro de entrada: Não tem
+   91 00000050         ; Parâmetro de saída: Não tem
+   92 00000050         *********************************
+   93 00000050         Turn0ff_TransistorQ3
+   94 00000050 B500            PUSH             {LR}
+   95 00000052 F04F 0000       MOV              R0, #2_00000000 ; Setar o parâm
                                                             etro de entrada da 
                                                             função apagando o b
                                                             it B5
-   98 00000056 F7FF FFFE       BL               PortB_Output ; Chamar a função 
+   96 00000056 F7FF FFFE       BL               PortB_Output ; Chamar a função 
                                                             para resetar a entr
                                                             ada do transistor Q
                                                             3
-   99 0000005A F85D EB04       POP              {LR}
-  100 0000005E 4770            BX               LR
-  101 00000060         
-  102 00000060         
-  103 00000060                 ALIGN                        ; garante que o fim
+   97 0000005A F85D EB04       POP              {LR}
+   98 0000005E 4770            BX               LR
+   99 00000060         
+  100 00000060         
+  101 00000060                 ALIGN                        ; garante que o fim
                                                              da seção está alin
                                                             hada 
-  104 00000060                 END                          ; fim do arquivo
+  102 00000060                 END                          ; fim do arquivo
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=.\objects\transistors.d -o.\objects\transistors.o -IC:\Users
 \admin\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129 --pre
@@ -201,7 +199,7 @@ Relocatable symbols
 
 Symbol: .text
    Definitions
-      At line 22 in file transistors.s
+      At line 20 in file transistors.s
    Uses
       None
 Comment: .text unused
@@ -209,49 +207,49 @@ Turn0ff_TransistorQ1 00000030
 
 Symbol: Turn0ff_TransistorQ1
    Definitions
-      At line 73 in file transistors.s
+      At line 71 in file transistors.s
    Uses
-      At line 26 in file transistors.s
+      At line 24 in file transistors.s
 Comment: Turn0ff_TransistorQ1 used once
 Turn0ff_TransistorQ2 00000040
 
 Symbol: Turn0ff_TransistorQ2
    Definitions
-      At line 84 in file transistors.s
+      At line 82 in file transistors.s
    Uses
-      At line 28 in file transistors.s
+      At line 26 in file transistors.s
 Comment: Turn0ff_TransistorQ2 used once
 Turn0ff_TransistorQ3 00000050
 
 Symbol: Turn0ff_TransistorQ3
    Definitions
-      At line 95 in file transistors.s
+      At line 93 in file transistors.s
    Uses
-      At line 30 in file transistors.s
+      At line 28 in file transistors.s
 Comment: Turn0ff_TransistorQ3 used once
 Turn0n_TransistorQ1 00000000
 
 Symbol: Turn0n_TransistorQ1
    Definitions
-      At line 40 in file transistors.s
+      At line 38 in file transistors.s
    Uses
-      At line 25 in file transistors.s
+      At line 23 in file transistors.s
 Comment: Turn0n_TransistorQ1 used once
 Turn0n_TransistorQ2 00000010
 
 Symbol: Turn0n_TransistorQ2
    Definitions
-      At line 51 in file transistors.s
+      At line 49 in file transistors.s
    Uses
-      At line 27 in file transistors.s
+      At line 25 in file transistors.s
 Comment: Turn0n_TransistorQ2 used once
 Turn0n_TransistorQ3 00000020
 
 Symbol: Turn0n_TransistorQ3
    Definitions
-      At line 62 in file transistors.s
+      At line 60 in file transistors.s
    Uses
-      At line 29 in file transistors.s
+      At line 27 in file transistors.s
 Comment: Turn0n_TransistorQ3 used once
 7 symbols
 
@@ -264,25 +262,25 @@ TRANSISTOR_Q1 00000020
 
 Symbol: TRANSISTOR_Q1
    Definitions
-      At line 13 in file transistors.s
+      At line 11 in file transistors.s
    Uses
-      At line 42 in file transistors.s
+      At line 40 in file transistors.s
 Comment: TRANSISTOR_Q1 used once
 TRANSISTOR_Q2 00000010
 
 Symbol: TRANSISTOR_Q2
    Definitions
-      At line 14 in file transistors.s
+      At line 12 in file transistors.s
    Uses
-      At line 53 in file transistors.s
+      At line 51 in file transistors.s
 Comment: TRANSISTOR_Q2 used once
 TRANSISTOR_Q3 00000020
 
 Symbol: TRANSISTOR_Q3
    Definitions
-      At line 15 in file transistors.s
+      At line 13 in file transistors.s
    Uses
-      At line 64 in file transistors.s
+      At line 62 in file transistors.s
 Comment: TRANSISTOR_Q3 used once
 3 symbols
 
@@ -295,21 +293,21 @@ PortB_Output 00000000
 
 Symbol: PortB_Output
    Definitions
-      At line 33 in file transistors.s
+      At line 31 in file transistors.s
    Uses
-      At line 54 in file transistors.s
-      At line 65 in file transistors.s
-      At line 87 in file transistors.s
-      At line 98 in file transistors.s
+      At line 52 in file transistors.s
+      At line 63 in file transistors.s
+      At line 85 in file transistors.s
+      At line 96 in file transistors.s
 
 PortP_Output 00000000
 
 Symbol: PortP_Output
    Definitions
-      At line 34 in file transistors.s
+      At line 32 in file transistors.s
    Uses
-      At line 43 in file transistors.s
-      At line 76 in file transistors.s
+      At line 41 in file transistors.s
+      At line 74 in file transistors.s
 
 2 symbols
 346 symbols in table

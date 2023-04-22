@@ -1,8 +1,6 @@
 ; main.s
 ; Desenvolvido para a placa EK-TM4C1294XL
-; Prof. Guilherme Peron
-; Ver 1 19/03/2018
-; Ver 2 26/08/2018
+
 ; Este programa deve esperar o usuário pressionar uma chave.
 ; Caso o usuário pressione uma chave, um LED deve piscar a cada 1 segundo.
 
@@ -13,27 +11,6 @@
 ; Declarações EQU - Defines
 ;<NOME>         EQU <VALOR>
 ; ========================
-
-DIG0_PQ	EQU	2_1111
-DIG0_PA	EQU	2_00110000
-DIG1_PQ	EQU	2_0110
-DIG1_PA	EQU	2_00000000
-DIG2_PQ	EQU	2_1011
-DIG2_PA	EQU	2_01010000
-DIG3_PQ	EQU	2_1111
-DIG3_PA	EQU	2_01000000
-DIG4_PQ	EQU	2_0110
-DIG4_PA	EQU	2_01100000
-DIG5_PQ	EQU	2_1101
-DIG5_PA	EQU	2_01100000
-DIG6_PQ	EQU	2_1101
-DIG6_PA	EQU	2_01110000
-DIG7_PQ	EQU	2_0111
-DIG7_PA	EQU	2_00000000
-DIG8_PQ	EQU	2_1111
-DIG8_PA	EQU	2_01110000
-DIG9_PQ	EQU	2_0111
-DIG9_PA	EQU	2_01100000
 
 ; -------------------------------------------------------------------------------
 ; Área de Dados - Declarações de variáveis
@@ -67,18 +44,9 @@ DIG9_PA	EQU	2_01100000
 		IMPORT  PortQ_Output
         IMPORT  PortJ_Input
 			
-		IMPORT Digito_0
-		IMPORT Digito_1
-		IMPORT Digito_2
-		IMPORT Digito_3
-		IMPORT Digito_4
-		IMPORT Digito_5
-		IMPORT Digito_6
-		IMPORT Digito_7
-		IMPORT Digito_8
-		IMPORT Digito_9
 		IMPORT Display_Dezena
 		IMPORT Display_Unidade
+		IMPORT Led
 		IMPORT Turn0n_TransistorQ1
 		IMPORT Turn0ff_TransistorQ1
 
@@ -94,7 +62,8 @@ Start
 	MOV R10, #0					;contador
 	MOV R9, #0					;estado --> 0 = funcionando / 1 = pausado
 	MOV R8, #2_10000000			;estado dos leds
-	
+	MOV R7, #0					;direção dos leds --> 0 = indo / 1 = voltando
+	MOV R6, #0					;estado anterior chave 1 --> 0 = desativado / 1 = ativado
 	MOV R5, #0					;conta tempo de exibição
 
 MainLoop
@@ -104,304 +73,83 @@ MainLoop
 ; ****************************************
 
 Exibicao
+	MOV R0, R10
 	BL Display_Dezena
+	MOV R0, R10
 	BL Display_Unidade
+	MOV R0, R8
 	BL Led
 	
 	ADD R5, #1
-	CMP R5, #200
+	CMP R5, #80
 	BLO Exibicao
 	
 	MOV R5, #0	
 	CMP R9, #0
-	BNE Exibicao
+	BNE Pausado
 	; se não tiver pausado executa aqui
+	
+	ADD R10, R10, R11
 	CMP R10, #99
-	ITE	HI
+	IT	HI
 	MOVHI R10, #0
-	ADDLS R10, R10, R11
 	
+	CMP R7, #0
+	BNE Led_Voltando
+	LSR R8, R8, #1
+	CMP R8, #2_00000001
+	IT	EQ
+	MOVEQ R7, #1
+	B ler_botoes
+Led_Voltando
+	LSL R8, R8, #1
+	CMP R8, #2_10000000
+	IT	EQ
+	MOVEQ R7, #0
 	
+ler_botoes
 	BL PortJ_Input				;Chama a subrotina que lê o estado das chaves e coloca o resultado em R0
 	B  Verifica_Nenhuma
 
 Pausado
-	;TODO - verificar estado
-	;se tiver pausado, piscar o led e ficar em loop
-	; se não, fazer os incrementos de contagem e led andando
-	
-	
-	;BL PortJ_Input
-	BL Pisca_Led
+	EOR R8, R8, #2_11111111
 	B MainLoop
 	
 Verifica_Nenhuma
 	CMP	R0, #2_00000011			 ;Verifica se nenhuma chave está pressionada
 	BNE Verifica_SW1			 ;Se o teste viu que tem pelo menos alguma chave pressionada pula
 	;TODO - Guardar estado das chaves
+	MOV R6, #0
 	B MainLoop					 ;Se o teste viu que nenhuma chave está pressionada, volta para o laço principal
 Verifica_SW1	
 	CMP R0, #2_00000010			 ;Verifica se somente a chave SW1 está pressionada
 	BNE Verifica_SW2             ;Se o teste falhou, pula
 	;TODO - Verificar se sw1 já não estava acionado antes
+	CMP R6, #1
+	BEQ Ativado_Anteriormente
 	;TODO - Fazer incremento de passo e análise se é maior que 9 para voltar a 1
+	CMP R11, #9
+	BLO Passo_menorque9
+	MOV R11, #0
+Passo_menorque9
+	ADD R11, R11, #1
+Ativado_Anteriormente	
+	MOV R6, #1
 	B MainLoop                   ;Volta para o laço principal
+	
 Verifica_SW2	
 	CMP R0, #2_00000001			 ;Verifica se somente a chave SW2 está pressionada
 	BNE Verifica_Ambas           ;Se o teste falhou, pula
-	;TODO - Verificar se sw2 já não estava acionado antes
+	MOV R6, #0
 	;TODO - Pausar a contagem
+	MOV R9, #1
+	MOV R8, #2_11111111
 	B MainLoop                   ;Volta para o laço principal	
 Verifica_Ambas
 	CMP R0, #2_00000000			 ;Verifica se ambas as chaves estão pressionadas
 	BNE MainLoop          		 ;Se o teste falhou, pula
 
 	B MainLoop                   ;Volta para o laço principal
-;	MOV R0, #2_00100000	
-;	BL PortB_Output	
-;	
-;	BL Digito_0
-;	BL Digito_1
-;	BL Digito_2
-;	BL Digito_3
-;	BL Digito_4
-;	BL Digito_5
-;	BL Digito_6
-;	BL Digito_7
-;	BL Digito_8
-;	BL Digito_9
-;	B MainLoop
-
-
-	
-
-
-
-
-; Função Led
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-Led
-	PUSH {LR}
-	BL Turn0n_TransistorQ1				;Chamar a função para setar o transistor Q1
-	
-	MOV R0, R8
-
-	BL BitsToLed						;Chamar a função para pegar o valor dos bits de R0 e ligar os leds correspondentes
-	
-	MOV R0, #1                			;Chamar a rotina para esperar 1ms
-	BL SysTick_Wait1ms
-	
-	BL Turn0ff_TransistorQ1				;Chamar a função para resetar o transistor Q1
-	
-	MOV R0, #1                			;Chamar a rotina para esperar 1ms
-	BL SysTick_Wait1ms
-	
-	POP {LR}
-	BX LR
-	
-; Função Pisca_Led
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-Pisca_Led
-	PUSH {LR}
-	MOV R0, #2_1111				;Setar o parâmetro de entrada da função setando os bits [Q3-Q0]
-	BL PortQ_Output				;Chamar a função para acender os LEDs 5, 6, 7 e 8
-	MOV R0, #2_1111				;Setar o parâmetro de entrada da função setando os bits [A7-A4]
-	BL PortA_Output				;Chamar a função para acender os LEDs 1, 2, 3 e 4
-	
-	MOV R0, #500                ;Chamar a rotina para esperar 500ms
-	BL SysTick_Wait1ms
-	MOV R0, #0					;Setar o parâmetro de entrada da função apagando os bits [Q3-Q0]
-	BL PortQ_Output				;Chamar a rotina para apagar os LEDs 5, 6, 7 e 8
-	MOV R0, #0					;Setar o parâmetro de entrada da função apagando os bits [A7-A4]
-	BL PortA_Output				;Chamar a rotina para apagar os LEDs 1, 2, 3 e 4
-	MOV R0, #500                ;Chamar a rotina para esperar 500ms
-	BL SysTick_Wait1ms	
-	POP {LR}
-	BX LR
-
-;--------------------------------------------------------------------------------
-; BinarioToDigito
-; Parâmetro de entrada: R0 --> bits para ligar LEDs correspondentes
-; Parâmetro de saída: Não tem
-*********************************
-BitsToLed
-	PUSH{LR}
-	MOV R1, R0
-	
-	AND R0, R1, #2_11110000
-	BL PortA_Output
-	
-	AND R0, R1, #2_00001111
-	BL PortQ_Output
-	
-	CMP R0, #0
-	BLEQ Digito_0
-	CMP R0, #1
-	BLEQ Digito_1
-	CMP R0, #2
-	BLEQ Digito_2
-	CMP R0, #3
-	BLEQ Digito_3
-	CMP R0, #4
-	BLEQ Digito_4
-	CMP R0, #5
-	BLEQ Digito_5
-	CMP R0, #6
-	BLEQ Digito_6
-	CMP R0, #7
-	BLEQ Digito_7
-	CMP R0, #8
-	BLEQ Digito_8
-	CMP R0, #9
-	BLEQ Digito_9	
-	POP{LR}
-	BX LR
-	
-; APAGAR FUNCOES COMENTADAS
-
-;--------------------------------------------------------------------------------
-; Função Digito_0
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_0
-;	PUSH{LR}
-;	MOV R0, #DIG0_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG0_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-
-;--------------------------------------------------------------------------------
-; Função Digito_1
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_1
-;	PUSH{LR}
-;	MOV R0, #DIG1_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG1_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-	
-	;--------------------------------------------------------------------------------
-; Função Digito_2
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_2
-;	PUSH{LR}
-;	MOV R0, #DIG2_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG2_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-	
-;--------------------------------------------------------------------------------
-; Função Digito_3
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_3
-;	PUSH{LR}
-;	MOV R0, #DIG3_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG3_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-	
-;--------------------------------------------------------------------------------
-; Função Digito_4
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_4
-;	PUSH{LR}
-;	MOV R0, #DIG4_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG4_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-	
-;--------------------------------------------------------------------------------
-; Função Digito_5
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_5
-;	PUSH{LR}
-;	MOV R0, #DIG5_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG5_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-;	
-;--------------------------------------------------------------------------------
-; Função Digito_6
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_6
-;	PUSH{LR}
-;	MOV R0, #DIG6_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG6_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-	
-;--------------------------------------------------------------------------------
-; Função Digito_7
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_7
-;	PUSH{LR}
-;	MOV R0, #DIG7_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG7_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-	
-;--------------------------------------------------------------------------------
-; Função Digito_8
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_8
-;	PUSH{LR}
-;	MOV R0, #DIG8_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG8_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
-	
-;--------------------------------------------------------------------------------
-; Função Digito_9
-; Parâmetro de entrada: Não tem
-; Parâmetro de saída: Não tem
-*********************************
-;Digito_9
-;	PUSH{LR}
-;	MOV R0, #DIG9_PQ	
-;	BL PortQ_Output	
-;	MOV R0, #DIG9_PA	
-;	BL PortA_Output	
-;	POP{LR}
-;	BX LR
 
 ; -------------------------------------------------------------------------------------------------------------------------
 ; Fim do Arquivo
