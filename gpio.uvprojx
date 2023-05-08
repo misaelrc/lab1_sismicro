@@ -473,11 +473,6 @@
               <FilePath>.\utils.s</FilePath>
             </File>
             <File>
-              <FileName>ssd.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\ssd.s</FilePath>
-            </File>
-            <File>
               <FileName>transistors.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\transistors.s</FilePath>
@@ -486,6 +481,26 @@
               <FileName>leds.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\leds.s</FilePath>
+            </File>
+            <File>
+              <FileName>estados.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\estados.s</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\lcd.s</FilePath>
+            </File>
+            <File>
+              <FileName>teclado.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\teclado.s</FilePath>
+            </File>
+            <File>
+              <FileName>senha.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\senha.s</FilePath>
             </File>
           </Files>
         </Group>

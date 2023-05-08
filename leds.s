@@ -22,24 +22,24 @@
 		IMPORT Turn0ff_TransistorQ1
 
 ; Função Led
-; Parâmetro de entrada: R8 --> bits para ligar LEDs correspondentes
+; Parâmetro de entrada: R7 --> bits para ligar LEDs correspondentes
 ; Parâmetro de saída: Não tem
 *********************************
 Led
 	PUSH {LR}
 	BL Turn0n_TransistorQ1				;Chamar a função para setar o transistor Q1
 	
-	MOV R0, R8
+	MOV R0, R7
 
 	BL BitsToLed						;Chamar a função para pegar o valor dos bits de R0 e ligar os leds correspondentes
 	
 	MOV R0, #1                			;Chamar a rotina para esperar 1ms
 	BL SysTick_Wait1ms
 	
-	BL Turn0ff_TransistorQ1				;Chamar a função para resetar o transistor Q1
+	;BL Turn0ff_TransistorQ1				;Chamar a função para resetar o transistor Q1
 	
-	MOV R0, #1                			;Chamar a rotina para esperar 1ms
-	BL SysTick_Wait1ms
+	;MOV R0, #1                			;Chamar a rotina para esperar 1ms
+	;BL SysTick_Wait1ms
 	
 	POP {LR}
 	BX LR

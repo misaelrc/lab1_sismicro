@@ -12,6 +12,13 @@
 ;<NOME>         EQU <VALOR>
 ; ========================
 
+; Estados
+ABERTO			EQU 0x1
+FECHANDO		EQU 0x2
+FECHADO			EQU 0x3
+ABRINDO			EQU 0x4
+TRAVADO			EQU 0x5
+
 ; -------------------------------------------------------------------------------
 ; Área de Dados - Declarações de variáveis
 		AREA  DATA, ALIGN=2
@@ -36,19 +43,24 @@
 									; função <func>
 		IMPORT  PLL_Init
 		IMPORT  SysTick_Init
-		IMPORT  SysTick_Wait1ms			
 		IMPORT  GPIO_Init
         IMPORT  PortA_Output
-		IMPORT  PortB_Output
 		IMPORT  PortP_Output
 		IMPORT  PortQ_Output
         IMPORT  PortJ_Input
 			
-		IMPORT Display_Dezena
-		IMPORT Display_Unidade
 		IMPORT Led
 		IMPORT Turn0n_TransistorQ1
 		IMPORT Turn0ff_TransistorQ1
+		
+		IMPORT Lcd_Init
+		IMPORT LcdMsgCofreAberto
+		
+		IMPORT CofreAberto
+		IMPORT CofreFechando
+		IMPORT CofreFechado
+		IMPORT CofreAbrindo
+		IMPORT CofreTravado
 
 
 ; -------------------------------------------------------------------------------
@@ -58,96 +70,31 @@ Start
 	BL SysTick_Init              ;Chama a subrotina para inicializar o SysTick
 	BL GPIO_Init                 ;Chama a subrotina que inicializa os GPIO
 	
-	MOV R11, #1					;passo da contagem
-	MOV R10, #0					;contador
-	MOV R9, #0					;estado --> 0 = funcionando / 1 = pausado
-	MOV R8, #2_10000000			;estado dos leds
-	MOV R7, #0					;direção dos leds --> 0 = indo / 1 = voltando
-	MOV R6, #0					;estado anterior chave 1 --> 0 = desativado / 1 = ativado
-	MOV R5, #0					;conta tempo de exibição
-
+	MOV R12, #ABERTO			;estado do cofre
+	MOV R11, #0					;estado anterior do cofre
+	MOV R10, #0					;contador caracteres senha
+	MOV R9, #0					;guarda a senha temporariamente
+	MOV R8, #0					;contador deslocamento esquerda msg (aberto) / contador mudar estado led (travado)
+	MOV R7, #0					;contador senhas incorretas (fechado) / bits dos leds (travado)
+	MOV R6, #0					;flag pra liberar pra colocar senha mestra
+	
+	BL Lcd_Init
+	BL LcdMsgCofreAberto
 MainLoop
-; ****************************************
-; Escrever código que lê o estado da chave, se ela estiver desativada apaga o LED
-; Se estivar ativada chama a subrotina Pisca_LED
-; ****************************************
-
-Exibicao
-	MOV R0, R10
-	BL Display_Dezena
-	MOV R0, R10
-	BL Display_Unidade
-	MOV R0, R8
-	BL Led
+	CMP R12, #ABERTO
+	BLEQ CofreAberto
 	
-	ADD R5, #1
-	CMP R5, #80
-	BLO Exibicao
+	CMP R12, #FECHANDO
+	BLEQ CofreFechando
 	
-	MOV R5, #0	
-	CMP R9, #0
-	BNE Pausado
-	; se não tiver pausado executa aqui
+	CMP R12, #FECHADO
+	BLEQ CofreFechado
 	
-	ADD R10, R10, R11
-	CMP R10, #99
-	IT	HI
-	MOVHI R10, #0
+	CMP R12, #ABRINDO
+	BLEQ CofreAbrindo
 	
-	CMP R7, #0
-	BNE Led_Voltando
-	LSR R8, R8, #1
-	CMP R8, #2_00000001
-	IT	EQ
-	MOVEQ R7, #1
-	B ler_botoes
-Led_Voltando
-	LSL R8, R8, #1
-	CMP R8, #2_10000000
-	IT	EQ
-	MOVEQ R7, #0
-	
-ler_botoes
-	BL PortJ_Input				;Chama a subrotina que lê o estado das chaves e coloca o resultado em R0
-	B  Verifica_Nenhuma
-
-Pausado
-	EOR R8, R8, #2_11111111
-	B MainLoop
-	
-Verifica_Nenhuma
-	CMP	R0, #2_00000011			 ;Verifica se nenhuma chave está pressionada
-	BNE Verifica_SW1			 ;Se o teste viu que tem pelo menos alguma chave pressionada pula
-	;TODO - Guardar estado das chaves
-	MOV R6, #0
-	B MainLoop					 ;Se o teste viu que nenhuma chave está pressionada, volta para o laço principal
-Verifica_SW1	
-	CMP R0, #2_00000010			 ;Verifica se somente a chave SW1 está pressionada
-	BNE Verifica_SW2             ;Se o teste falhou, pula
-	;TODO - Verificar se sw1 já não estava acionado antes
-	CMP R6, #1
-	BEQ Ativado_Anteriormente
-	;TODO - Fazer incremento de passo e análise se é maior que 9 para voltar a 1
-	CMP R11, #9
-	BLO Passo_menorque9
-	MOV R11, #0
-Passo_menorque9
-	ADD R11, R11, #1
-Ativado_Anteriormente	
-	MOV R6, #1
-	B MainLoop                   ;Volta para o laço principal
-	
-Verifica_SW2	
-	CMP R0, #2_00000001			 ;Verifica se somente a chave SW2 está pressionada
-	BNE Verifica_Ambas           ;Se o teste falhou, pula
-	MOV R6, #0
-	;TODO - Pausar a contagem
-	MOV R9, #1
-	MOV R8, #2_11111111
-	B MainLoop                   ;Volta para o laço principal	
-Verifica_Ambas
-	CMP R0, #2_00000000			 ;Verifica se ambas as chaves estão pressionadas
-	BNE MainLoop          		 ;Se o teste falhou, pula
+	CMP R12, #TRAVADO
+	BLEQ CofreTravado
 
 	B MainLoop                   ;Volta para o laço principal
 

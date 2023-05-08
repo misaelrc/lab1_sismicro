@@ -237,6 +237,7 @@ NVIC_ST_RELOAD_R      EQU 0xE000E014
 NVIC_ST_CURRENT_R     EQU 0xE000E018
 ; -------------------------------------------------------------------------------------------------------------------------	
         EXPORT  SysTick_Init
+		EXPORT  SysTick_Wait1us
 		EXPORT  SysTick_Wait1ms
 ;------------SysTick_Init------------
 ; Configura o sistema para utilizar o SysTick para delays

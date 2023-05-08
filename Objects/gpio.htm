@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\gpio.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\gpio.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Apr 21 22:09:58 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun May 07 22:47:21 2023
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -13,35 +13,43 @@ Call chain for Maximum Stack Depth:</H3>
 Functions with no stack information
 </H3><UL>
  <LI><a href="#[6b]">Reset_Handler</a>
- <LI><a href="#[6f]">GPIO_Init</a>
- <LI><a href="#[84]">PortA_Output</a>
- <LI><a href="#[87]">PortB_Output</a>
- <LI><a href="#[86]">PortP_Output</a>
- <LI><a href="#[83]">PortQ_Output</a>
- <LI><a href="#[73]">PortJ_Input</a>
+ <LI><a href="#[71]">GPIO_Init</a>
+ <LI><a href="#[7d]">PortA_Output</a>
+ <LI><a href="#[87]">PortK_Output</a>
+ <LI><a href="#[88]">PortM_Output</a>
+ <LI><a href="#[7a]">PortP_Output</a>
+ <LI><a href="#[7e]">PortQ_Output</a>
+ <LI><a href="#[8f]">PortJ_Input</a>
+ <LI><a href="#[8b]">PortL_Input</a>
+ <LI><a href="#[6d]">Teclado_ConfiguraLeituraPrimeiraColuna</a>
+ <LI><a href="#[8c]">Teclado_ConfiguraLeituraSegundaColuna</a>
+ <LI><a href="#[8d]">Teclado_ConfiguraLeituraTerceiraColuna</a>
+ <LI><a href="#[8e]">Teclado_ConfiguraLeituraQuartaColuna</a>
+ <LI><a href="#[3d]">GPIOPortJ_Handler</a>
  <LI><a href="#[6c]">Start</a>
- <LI><a href="#[6d]">PLL_Init</a>
- <LI><a href="#[6e]">SysTick_Init</a>
- <LI><a href="#[75]">SysTick_Wait1ms</a>
- <LI><a href="#[70]">Display_Dezena</a>
- <LI><a href="#[71]">Display_Unidade</a>
- <LI><a href="#[79]">Digito_0</a>
- <LI><a href="#[7a]">Digito_1</a>
- <LI><a href="#[7b]">Digito_2</a>
- <LI><a href="#[7c]">Digito_3</a>
- <LI><a href="#[7d]">Digito_4</a>
- <LI><a href="#[7e]">Digito_5</a>
- <LI><a href="#[7f]">Digito_6</a>
- <LI><a href="#[80]">Digito_7</a>
- <LI><a href="#[81]">Digito_8</a>
- <LI><a href="#[82]">Digito_9</a>
- <LI><a href="#[85]">Turn0n_TransistorQ1</a>
- <LI><a href="#[74]">Turn0n_TransistorQ2</a>
- <LI><a href="#[77]">Turn0n_TransistorQ3</a>
- <LI><a href="#[88]">Turn0ff_TransistorQ1</a>
- <LI><a href="#[76]">Turn0ff_TransistorQ2</a>
- <LI><a href="#[78]">Turn0ff_TransistorQ3</a>
- <LI><a href="#[72]">Led</a>
+ <LI><a href="#[6f]">PLL_Init</a>
+ <LI><a href="#[70]">SysTick_Init</a>
+ <LI><a href="#[6e]">SysTick_Wait1ms</a>
+ <LI><a href="#[89]">SysTick_Wait1us</a>
+ <LI><a href="#[79]">Turn0n_TransistorQ1</a>
+ <LI><a href="#[7b]">Turn0ff_TransistorQ1</a>
+ <LI><a href="#[7c]">Led</a>
+ <LI><a href="#[74]">CofreAberto</a>
+ <LI><a href="#[75]">CofreFechando</a>
+ <LI><a href="#[76]">CofreFechado</a>
+ <LI><a href="#[77]">CofreAbrindo</a>
+ <LI><a href="#[78]">CofreTravado</a>
+ <LI><a href="#[72]">Lcd_Init</a>
+ <LI><a href="#[86]">LcdComando</a>
+ <LI><a href="#[7f]">LcdDeslocaEsquerda</a>
+ <LI><a href="#[73]">LcdMsgCofreAberto</a>
+ <LI><a href="#[81]">LcdMsgCofreFechando</a>
+ <LI><a href="#[82]">LcdMsgCofreFechado</a>
+ <LI><a href="#[84]">LcdMsgCofreAbrindo</a>
+ <LI><a href="#[85]">LcdMsgCofreTravado</a>
+ <LI><a href="#[8a]">Teclado_PegarTeclaPressionada</a>
+ <LI><a href="#[80]">SetaSenha</a>
+ <LI><a href="#[83]">ComparaSenha</a>
 </UL>
 </UL>
 <P>
@@ -89,7 +97,7 @@ Function Pointers
  <LI><a href="#[28]">GPIOPortF_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[29]">GPIOPortG_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[2a]">GPIOPortH_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[3d]">GPIOPortJ_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
+ <LI><a href="#[3d]">GPIOPortJ_Handler</a> from gpio.o(.text) referenced from startup.o(RESET)
  <LI><a href="#[3e]">GPIOPortK_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[3f]">GPIOPortL_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[50]">GPIOPortM_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
@@ -320,9 +328,6 @@ Global Symbols
 <P><STRONG><a name="[2a]"></a>GPIOPortH_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[3d]"></a>GPIOPortJ_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
-<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
-</UL>
 <P><STRONG><a name="[3e]"></a>GPIOPortK_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
@@ -536,220 +541,226 @@ Global Symbols
 <P><STRONG><a name="[36]"></a>uDMA_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[6f]"></a>GPIO_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<P><STRONG><a name="[71]"></a>GPIO_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[84]"></a>PortA_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_9
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_8
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_7
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_6
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_5
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_4
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_3
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_2
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_1
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_0
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
+<P><STRONG><a name="[7d]"></a>PortA_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
 </UL>
 
-<P><STRONG><a name="[87]"></a>PortB_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ3
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ2
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0ff_TransistorQ3
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0ff_TransistorQ2
+<P><STRONG><a name="[87]"></a>PortK_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdComando
 </UL>
 
-<P><STRONG><a name="[86]"></a>PortP_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ1
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0ff_TransistorQ1
+<P><STRONG><a name="[88]"></a>PortM_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdComando
 </UL>
 
-<P><STRONG><a name="[83]"></a>PortQ_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_9
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_8
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_7
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_6
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_5
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_4
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_3
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_2
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_1
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_0
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
+<P><STRONG><a name="[7a]"></a>PortP_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ1
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0ff_TransistorQ1
 </UL>
 
-<P><STRONG><a name="[73]"></a>PortJ_Input</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[7e]"></a>PortQ_Output</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
 </UL>
 
+<P><STRONG><a name="[8f]"></a>PortJ_Input</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[8b]"></a>PortL_Input</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+</UL>
+
+<P><STRONG><a name="[6d]"></a>Teclado_ConfiguraLeituraPrimeiraColuna</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+</UL>
+
+<P><STRONG><a name="[8c]"></a>Teclado_ConfiguraLeituraSegundaColuna</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+</UL>
+
+<P><STRONG><a name="[8d]"></a>Teclado_ConfiguraLeituraTerceiraColuna</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+</UL>
+
+<P><STRONG><a name="[8e]"></a>Teclado_ConfiguraLeituraQuartaColuna</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+</UL>
+
+<P><STRONG><a name="[3d]"></a>GPIOPortJ_Handler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
 <P><STRONG><a name="[6c]"></a>Start</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, main.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Dezena
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortJ_Input
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<BR><BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lcd_Init
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreAberto
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreTravado
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreFechando
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreFechado
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreAbrindo
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreAberto
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
 
-<P><STRONG><a name="[6d]"></a>PLL_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
+<P><STRONG><a name="[6f]"></a>PLL_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[6e]"></a>SysTick_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
+<P><STRONG><a name="[70]"></a>SysTick_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[75]"></a>SysTick_Wait1ms</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Dezena
+<P><STRONG><a name="[6e]"></a>SysTick_Wait1ms</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetaSenha
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreFechando
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdDeslocaEsquerda
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreFechando
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreAbrindo
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPortJ_Handler
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_ConfiguraLeituraPrimeiraColuna
 </UL>
 
-<P><STRONG><a name="[70]"></a>Display_Dezena</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ2
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0ff_TransistorQ2
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+<P><STRONG><a name="[89]"></a>SysTick_Wait1us</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdComando
+</UL>
+
+<P><STRONG><a name="[79]"></a>Turn0n_TransistorQ1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortP_Output
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
+</UL>
+
+<P><STRONG><a name="[7b]"></a>Turn0ff_TransistorQ1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortP_Output
+</UL>
+
+<P><STRONG><a name="[7c]"></a>Led</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ1
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
+</UL>
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreTravado
+</UL>
+
+<P><STRONG><a name="[74]"></a>CofreAberto</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, estados.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetaSenha
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdDeslocaEsquerda
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreAberto
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[71]"></a>Display_Unidade</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ3
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0ff_TransistorQ3
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_9
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_8
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_7
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_6
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_5
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_4
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_3
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_2
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_1
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digito_0
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+<P><STRONG><a name="[75]"></a>CofreFechando</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, estados.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreFechando
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[79]"></a>Digito_0</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[7a]"></a>Digito_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[7b]"></a>Digito_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[7c]"></a>Digito_3</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[7d]"></a>Digito_4</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[7e]"></a>Digito_5</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[7f]"></a>Digito_6</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[80]"></a>Digito_7</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[81]"></a>Digito_8</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[82]"></a>Digito_9</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, ssd.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[85]"></a>Turn0n_TransistorQ1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortP_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
-</UL>
-
-<P><STRONG><a name="[74]"></a>Turn0n_TransistorQ2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortB_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Dezena
-</UL>
-
-<P><STRONG><a name="[77]"></a>Turn0n_TransistorQ3</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortB_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[88]"></a>Turn0ff_TransistorQ1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortP_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
-</UL>
-
-<P><STRONG><a name="[76]"></a>Turn0ff_TransistorQ2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortB_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Dezena
-</UL>
-
-<P><STRONG><a name="[78]"></a>Turn0ff_TransistorQ3</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, transistors.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortB_Output
-</UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Unidade
-</UL>
-
-<P><STRONG><a name="[72]"></a>Led</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, leds.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0n_TransistorQ1
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turn0ff_TransistorQ1
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortQ_Output
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortA_Output
+<P><STRONG><a name="[76]"></a>CofreFechado</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, estados.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreFechado
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComparaSenha
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[77]"></a>CofreAbrindo</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, estados.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreAbrindo
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[78]"></a>CofreTravado</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, estados.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreTravado
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComparaSenha
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[72]"></a>Lcd_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdComando
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[86]"></a>LcdComando</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1us
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortM_Output
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortK_Output
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdMsgCofreFechando
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdDeslocaEsquerda
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lcd_Init
+</UL>
+
+<P><STRONG><a name="[7f]"></a>LcdDeslocaEsquerda</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdComando
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreAberto
+</UL>
+
+<P><STRONG><a name="[73]"></a>LcdMsgCofreAberto</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreAberto
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[81]"></a>LcdMsgCofreFechando</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LcdComando
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreFechando
+</UL>
+
+<P><STRONG><a name="[82]"></a>LcdMsgCofreFechado</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreFechado
+</UL>
+
+<P><STRONG><a name="[84]"></a>LcdMsgCofreAbrindo</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreAbrindo
+</UL>
+
+<P><STRONG><a name="[85]"></a>LcdMsgCofreTravado</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreTravado
+</UL>
+
+<P><STRONG><a name="[8a]"></a>Teclado_PegarTeclaPressionada</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, teclado.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_ConfiguraLeituraQuartaColuna
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_ConfiguraLeituraTerceiraColuna
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_ConfiguraLeituraSegundaColuna
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_ConfiguraLeituraPrimeiraColuna
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortL_Input
+</UL>
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetaSenha
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComparaSenha
+</UL>
+
+<P><STRONG><a name="[80]"></a>SetaSenha</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, senha.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreAberto
+</UL>
+
+<P><STRONG><a name="[83]"></a>ComparaSenha</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, senha.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Teclado_PegarTeclaPressionada
+</UL>
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreTravado
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CofreFechado
 </UL>
 <P>
 <H3>
