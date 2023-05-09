@@ -74,20 +74,20 @@ Image Symbol Table
     $v0                                      0x000007c0   Number         0  transistors.o(.text)
     .text                                    0x000007e0   Section       52  leds.o(.text)
     $v0                                      0x000007e0   Number         0  leds.o(.text)
-    .text                                    0x00000814   Section      216  estados.o(.text)
+    .text                                    0x00000814   Section      220  estados.o(.text)
     $v0                                      0x00000814   Number         0  estados.o(.text)
-    .text                                    0x000008ec   Section      340  lcd.o(.text)
-    $v0                                      0x000008ec   Number         0  lcd.o(.text)
-    .text                                    0x00000a40   Section      396  teclado.o(.text)
-    $v0                                      0x00000a40   Number         0  teclado.o(.text)
-    .text                                    0x00000bcc   Section      224  senha.o(.text)
-    $v0                                      0x00000bcc   Number         0  senha.o(.text)
-    DATA                                     0x00000cac   Section      140  lcd.o(DATA)
-    strAberto                                0x00000cac   Data          78  lcd.o(DATA)
-    strFechando                              0x00000cfa   Data          17  lcd.o(DATA)
-    strFechado                               0x00000d0b   Data          14  lcd.o(DATA)
-    strAbrindo                               0x00000d19   Data          17  lcd.o(DATA)
-    strTravado                               0x00000d2a   Data          14  lcd.o(DATA)
+    .text                                    0x000008f0   Section      340  lcd.o(.text)
+    $v0                                      0x000008f0   Number         0  lcd.o(.text)
+    .text                                    0x00000a44   Section      396  teclado.o(.text)
+    $v0                                      0x00000a44   Number         0  teclado.o(.text)
+    .text                                    0x00000bd0   Section      224  senha.o(.text)
+    $v0                                      0x00000bd0   Number         0  senha.o(.text)
+    DATA                                     0x00000cb0   Section      140  lcd.o(DATA)
+    strAberto                                0x00000cb0   Data          78  lcd.o(DATA)
+    strFechando                              0x00000cfe   Data          17  lcd.o(DATA)
+    strFechado                               0x00000d0f   Data          14  lcd.o(DATA)
+    strAbrindo                               0x00000d1d   Data          17  lcd.o(DATA)
+    strTravado                               0x00000d2e   Data          14  lcd.o(DATA)
     STACK                                    0x20000000   Section     1024  startup.o(STACK)
     StackMem                                 0x20000000   Data           0  startup.o(STACK)
 
@@ -227,19 +227,19 @@ Image Symbol Table
     CofreAberto                              0x00000815   Thumb Code     0  estados.o(.text)
     CofreFechando                            0x00000845   Thumb Code     0  estados.o(.text)
     CofreFechado                             0x00000861   Thumb Code     0  estados.o(.text)
-    CofreAbrindo                             0x00000887   Thumb Code     0  estados.o(.text)
-    CofreTravado                             0x000008a3   Thumb Code     0  estados.o(.text)
-    Lcd_Init                                 0x000008ed   Thumb Code     0  lcd.o(.text)
-    LcdComando                               0x00000931   Thumb Code     0  lcd.o(.text)
-    LcdDeslocaEsquerda                       0x000009a3   Thumb Code     0  lcd.o(.text)
-    LcdMsgCofreAberto                        0x000009bf   Thumb Code     0  lcd.o(.text)
-    LcdMsgCofreFechando                      0x000009d1   Thumb Code     0  lcd.o(.text)
-    LcdMsgCofreFechado                       0x000009f7   Thumb Code     0  lcd.o(.text)
-    LcdMsgCofreAbrindo                       0x00000a09   Thumb Code     0  lcd.o(.text)
-    LcdMsgCofreTravado                       0x00000a1b   Thumb Code     0  lcd.o(.text)
-    Teclado_PegarTeclaPressionada            0x00000a41   Thumb Code     0  teclado.o(.text)
-    SetaSenha                                0x00000bcd   Thumb Code     0  senha.o(.text)
-    ComparaSenha                             0x00000c33   Thumb Code     0  senha.o(.text)
+    CofreAbrindo                             0x00000889   Thumb Code     0  estados.o(.text)
+    CofreTravado                             0x000008a5   Thumb Code     0  estados.o(.text)
+    Lcd_Init                                 0x000008f1   Thumb Code     0  lcd.o(.text)
+    LcdComando                               0x00000935   Thumb Code     0  lcd.o(.text)
+    LcdDeslocaEsquerda                       0x000009a7   Thumb Code     0  lcd.o(.text)
+    LcdMsgCofreAberto                        0x000009c3   Thumb Code     0  lcd.o(.text)
+    LcdMsgCofreFechando                      0x000009d5   Thumb Code     0  lcd.o(.text)
+    LcdMsgCofreFechado                       0x000009fb   Thumb Code     0  lcd.o(.text)
+    LcdMsgCofreAbrindo                       0x00000a0d   Thumb Code     0  lcd.o(.text)
+    LcdMsgCofreTravado                       0x00000a1f   Thumb Code     0  lcd.o(.text)
+    Teclado_PegarTeclaPressionada            0x00000a45   Thumb Code     0  teclado.o(.text)
+    SetaSenha                                0x00000bd1   Thumb Code     0  senha.o(.text)
+    ComparaSenha                             0x00000c37   Thumb Code     0  senha.o(.text)
 
 
 
@@ -249,9 +249,9 @@ Memory Map of the image
 
   Image Entry point : 0x00000209
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000d38, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000d3c, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000d38, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000d3c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -261,19 +261,19 @@ Memory Map of the image
     0x000005dc   0x000005dc   0x000001e4   Code   RO           19    .text               utils.o
     0x000007c0   0x000007c0   0x00000020   Code   RO           22    .text               transistors.o
     0x000007e0   0x000007e0   0x00000034   Code   RO           25    .text               leds.o
-    0x00000814   0x00000814   0x000000d8   Code   RO           28    .text               estados.o
-    0x000008ec   0x000008ec   0x00000154   Code   RO           32    .text               lcd.o
-    0x00000a40   0x00000a40   0x0000018c   Code   RO           35    .text               teclado.o
-    0x00000bcc   0x00000bcc   0x000000e0   Code   RO           39    .text               senha.o
-    0x00000cac   0x00000cac   0x0000008c   Data   RO           31    DATA                lcd.o
+    0x00000814   0x00000814   0x000000dc   Code   RO           28    .text               estados.o
+    0x000008f0   0x000008f0   0x00000154   Code   RO           32    .text               lcd.o
+    0x00000a44   0x00000a44   0x0000018c   Code   RO           35    .text               teclado.o
+    0x00000bd0   0x00000bd0   0x000000e0   Code   RO           39    .text               senha.o
+    0x00000cb0   0x00000cb0   0x0000008c   Data   RO           31    DATA                lcd.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000d38, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000d3c, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000d38, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000d3c, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -287,7 +287,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       216          0          0          0          0        292   estados.o
+       220          2          0          0          0        292   estados.o
        856        212          0          0          0        512   gpio.o
        340         20        140          0          0        328   lcd.o
         52          0          0          0          0        232   leds.o
@@ -299,7 +299,7 @@ Image component sizes
        484         92          0          0          0        376   utils.o
 
     ----------------------------------------------------------------------
-      3244        846        140          0       1024       3608   Object Totals
+      3248        848        140          0       1024       3608   Object Totals
          0          0          0          0          0          0   (incl. Generated)
          0          0          0          0          0          0   (incl. Padding)
 
@@ -314,15 +314,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3244        846        140          0       1024       3608   Grand Totals
-      3244        846        140          0       1024       3608   ELF Image Totals
-      3244        846        140          0          0          0   ROM Totals
+      3248        848        140          0       1024       3608   Grand Totals
+      3248        848        140          0       1024       3608   ELF Image Totals
+      3248        848        140          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 3384 (   3.30kB)
+    Total RO  Size (Code + RO Data)                 3388 (   3.31kB)
     Total RW  Size (RW Data + ZI Data)              1024 (   1.00kB)
-    Total ROM Size (Code + RO Data + RW Data)       3384 (   3.30kB)
+    Total ROM Size (Code + RO Data + RW Data)       3388 (   3.31kB)
 
 ==============================================================================
 

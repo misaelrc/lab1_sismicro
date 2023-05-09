@@ -103,11 +103,13 @@ CofreFechado
 	MOV R7, #0
 LoopCofreFechado
 	CMP R7, #3
-	IT	GE
+	ITT	GE
 	MOVGE R12, #TRAVADO
+	BGE Fim_CofreFechado
 	
 	BL ComparaSenha
 	MOV R11, #FECHADO
+Fim_CofreFechado
 	POP{LR}
 	BX LR
 	
